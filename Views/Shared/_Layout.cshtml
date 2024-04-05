@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <meta name="description" content="@ViewData["description"]">
+    <meta property="og:description" content="@ViewData["description"]">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+        integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="~/assets/imgs/moto-icon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="~/assets/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/assets/styles/css/base.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/webASP.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <div id="app">
+        <partial name="~/Views/Shared/Components/header/Header.cshtml" />
+        <div class="container" style="margin-top: 60px;">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+        <partial name="~/Views/Shared/Components/footer/Footer.cshtml" />
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></el =>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
