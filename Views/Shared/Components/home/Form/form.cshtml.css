@@ -11,5 +11,18 @@
         justify-content: center;
         align-items    : center;
         height         : 100%;
+        position       : relative;
+        z-index        : 999;
+        color          : #fff;
+
+        .form-wp-right {
+            background-color: #333;
+            padding         : 20px 30px;
+            border-radius   : 10px;
+
+            h3 {
+                font-size: 18px;
+            }
+        }
     }
 }
