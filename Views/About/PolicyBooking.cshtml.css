@@ -52,5 +52,25 @@
 
             }
         }
+
+        .time-booking{
+            h3{
+                font-weight: 700;
+            }
+
+            h5{
+                margin-left: 30px;
+            }
+
+            table {
+                width: 70%;
+            
+                td{
+                    padding: 10px;
+                    border: 1px solid #000;
+                }
+            }
+
+        }
     }
 }
