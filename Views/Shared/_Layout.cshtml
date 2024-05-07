@@ -20,17 +20,17 @@
     <div id="app">
         <partial name="~/Views/Shared/Components/header/Header.cshtml" />
         <div class="" style="margin-top: 60px;">
-        <div  style="margin-top: 60px;">
-            <main role="main">
-                @RenderBody()
-            </main>
+            <div style="margin-top: 60px;">
+                <main role="main">
+                    @RenderBody()
+                </main>
+            </div>
+            <partial name="~/Views/Shared/Components/footer/Footer.cshtml" />
         </div>
-        <partial name="~/Views/Shared/Components/footer/Footer.cshtml" />
-    </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></el =>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <script src="~/lib/jquery/dist/jquery.min.js"></el =>
+                <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
