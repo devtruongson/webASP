@@ -7,6 +7,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        background-image: url("https://motogo.vn/wp-content/themes/motogo/images/tourist-header.png") ;
+        background-position-x: 75%;
+        background-repeat: no-repeat;
+        background-size: contain;
 
         .form-header{
             

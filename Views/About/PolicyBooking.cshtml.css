@@ -11,6 +11,10 @@
         align-items: center;
         background-color: #ccc;
         margin-bottom: 30px;
+        background-image: url("https://motogo.vn/wp-content/themes/motogo/images/map.svg") ;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
         .form-header{
             h1{
