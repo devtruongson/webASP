@@ -2,10 +2,6 @@
     ViewData["Title"] = "Chính sách";
 }
 
-<script>
-    const indexSibar = [1, 2, 3, 4, 5]
-
-</script>
 
 <div class="form-policy-booking">
     <div class="overlay">
@@ -13,83 +9,307 @@
             <h1>chính sách</h1>
             <div class="underlined-h1"></div>
         </div>
-
-
     </div>
 
     <div class="form-content container">
         <div class="row">
             <div class="col-4">
                 <div class="sibar">
-                    <div class="form-item sib-one">
-                        <button>Thời gian thuê xe</button>
+                    <div class="form-item">
+                        <button id="btn-sib_time" class="active">Thời gian thuê xe</button>
                     </div>
 
-                    <div class="form-item sib-two">
-                        <button>Thủ tục thuê xe</button>
+                    <div class="form-item">
+                        <button id="btn-sib_procedure">Thủ tục thuê xe</button>
                     </div>
 
-                    <div class="form-item sib-three">
-                        <button>Giá thuê xe</button>
+                    <div class="form-item">
+                        <button id="btn-sib_price">Giá thuê xe</button>
                     </div>
 
-                    <div class="form-item sib-four">
-                        <button>Trách nhiệm bên thuê</button>
+                    <div class="form-item">
+                        <button id="btn-sib_resp_guest">Trách nhiệm bên thuê</button>
                     </div>
 
-                    <div class="form-item lib-five">
-                        <button>Trách nhuêmj bên thuê xe</button>
+                    <div class="form-item">
+                        <button id="btn-sib_resp_owner">Trách nhiệm bên thuê xe</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-8 time-booking">
-                <h3>Thời gian thuê xe</h3>
 
-                <h5>Giá thuê xe sẽ được tính kết hợp theo ngày và theo giờ</h5>
+                @* content time *@
+                <div class="content-time form-content-detail">
+                    <h3>Thời gian thuê xe</h3>
 
-                <p class="fw-bold mt-4">01 ngày thuê <span class="fw-normal">sẽ là 24 tiếng, tính từ giờ, thời điểm bạn
-                        nhận
-                        xe ngày hôm nay
-                        đến đúng giờ đó
-                        ngày hôm sau.</span></p>
+                    <h5>Giá thuê xe sẽ được tính kết hợp theo ngày và theo giờ</h5>
 
-                <p class="fw-bold mt-4">Giờ thuê xe <span class="fw-normal">chỉ được áp dụng khi bạn thuê xe > 1 ngày.
-                        Giá theo giờ phát
-                        sinh sẽ tùy thuộc vào
-                        loại
-                        xe bạn thuê:</span></p>
+                    <p class="fw-bold mt-4">01 ngày thuê <span class="fw-normal">sẽ là 24 tiếng, tính từ giờ, thời điểm
+                            bạn
+                            nhận
+                            xe ngày hôm nay
+                            đến đúng giờ đó
+                            ngày hôm sau.</span></p>
 
-                <table>
-                    <tr>
-                        <td class="fw-bold">Xe số</td>
-                        <td>15k/tiếng phát sinh</td>
-                    </tr>
-                    <tr>
-                        <td class="fw-bold">Xe tay ga</td>
-                        <td>20k/tiếng phát sinh</td>
-                    </tr>
-                </table>
+                    <p class="fw-bold mt-4">Giờ thuê xe <span class="fw-normal">chỉ được áp dụng khi bạn thuê xe > 1
+                            ngày.
+                            Giá theo giờ phát
+                            sinh sẽ tùy thuộc vào
+                            loại
+                            xe bạn thuê:</span></p>
 
-                <p class="fw-bold mt-3">Lưu ý: <span class="fw-normal">Nếu số giờ phát sinh của bạn > 8 tiếng, MOTOGO sẽ
-                        tính
-                        tròn là 1 ngày
-                        thuê xe.</span>
-                </p>
+                    <table>
+                        <tr>
+                            <td class="fw-bold">Xe số</td>
+                            <td>15k/tiếng phát sinh</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold">Xe tay ga</td>
+                            <td>20k/tiếng phát sinh</td>
+                        </tr>
+                    </table>
 
-                <p>Ví dụ: Bạn thuê một xe số Sirius,</p>
+                    <p class="fw-bold mt-3">Lưu ý: <span class="fw-normal">Nếu số giờ phát sinh của bạn > 8 tiếng,
+                            MOTOGO sẽ
+                            tính
+                            tròn là 1 ngày
+                            thuê xe.</span>
+                    </p>
 
-                <p class="fw-bold mt-3">Nhận xe: <span class="fw-normal">9h sáng, 21/03/2022</span></p>
-                <p class="fw-bold mt-3">Trả xe lúc: <span class="fw-normal">3h chiều, 22/03/2022</span></p>
+                    <p>Ví dụ: Bạn thuê một xe số Sirius,</p>
 
-                <p class="mt-4">Hệ thống của chúng tôi sẽ tính toán như sau: Tổng thời gian bạn thuê xe sẽ là 1 ngày và
-                    6 tiếng, bạn
-                    sẽ thay toán cho tổng thời gian thuê xe đó bao gồm giá thuê xe 1 ngày là 130k và giá thuê xe 06
-                    tiếng phát sinh còn lại còn lại = 90k. Tổng số tiền thuê xe của bạn sẽ là 220k.</p>
+                    <p class="fw-bold mt-3">Nhận xe: <span class="fw-normal">9h sáng, 21/03/2022</span></p>
+                    <p class="fw-bold mt-3">Trả xe lúc: <span class="fw-normal">3h chiều, 22/03/2022</span></p>
 
-                <h5>Ngày đầu tiên thuê xe, bạn thuê một vài tiếng thì vẫn phải trả tiền thuê xe tròn 1 ngày.</h5>
+                    <p class="mt-4">Hệ thống của chúng tôi sẽ tính toán như sau: Tổng thời gian bạn thuê xe sẽ là 1 ngày
+                        và
+                        6 tiếng, bạn
+                        sẽ thay toán cho tổng thời gian thuê xe đó bao gồm giá thuê xe 1 ngày là 130k và giá thuê xe 06
+                        tiếng phát sinh còn lại còn lại = 90k. Tổng số tiền thuê xe của bạn sẽ là 220k.</p>
+
+                    <h5>Ngày đầu tiên thuê xe, bạn thuê một vài tiếng thì vẫn phải trả tiền thuê xe tròn 1 ngày.</h5>
+                </div>
+
+                @* content procedure *@
+
+                <div class="display-none form-content-detail content-procedure">
+                    <h3>Thủ tục thuê xe</h3>
+
+                    <p>Các bước làm thủ tục thuê xe như sau:</p>
+
+                    <p><span>1- </span>Khách thuê xe phải là người trong độ tuổi được phép lái xe và có Giấy phép lái xe
+                        được cấp bởi cơ
+                        quan nhà nước có thẩm quyền.</p>
+
+                    <p><span>2- </span> Phải để lại các giấy tờ sau trong các giấy tờ sau:</p>
+
+                    <p>Đối với khách du lịch đi bằng máy bay vui lòng để lại <span>CMND, thẻ Căn cước Công dân</span>
+                        hoặc <span>Hộ chiếu</span> kèm với <span>thông tin chuyến bay đến và rời.</span></p>
+
+                    <p>Với khách là người địa phương hoặc từ nơi khác đến không có vé máy bay, thủ tục yêu cầu là để lại
+                        <span>CMND, thẻ Căn cước Công dân</span> hoặc <span>Hộ chiếu</span> kèm <span>Sổ hộ khẩu</span>
+                        (nếu không có sổ hộ khẩu sẽ thay thế
+                        bằng tiền đặt cọc 3 triệu đồng đối với xe số và tiền đặt cọc 5 triệu đồng đối với xe tay ga - số
+                        tiền này chúng tôi sẽ hoàn trả lại sau khi khách hàng hoàn tất trả xe)
+                    </p>
+
+                    <p><span>3-</span> Đồng ý các điều khoản và ký vào hợp đồng thuê xe giữa 2 bên.</p>
+                    <p><span>4- </span> Nhận xe</p>
+
+                    <p><span>Lưu ý : </span>Thuê xe theo đoàn thì chỉ cần 1 người đứng ra làm thủ tục thuê xe.</p>
+                </div>
+
+                @* content price *@
+
+                <div class="display-none form-content-detail content-price">
+                    <h3>Giá thuê xe</h3>
+
+                    <p>Giá cho thuê xe máy tại các tỉnh thành phố sẽ khác nhau do mỗi nơi có những điều kiện địa hình
+                        khác nhau, ảnh hưởng đến chất lượng xe khác nhau. Mỗi thị trường sẽ có bảng giá, đơn giá theo
+                        ngày khác nhau, tuy nhiên cách tính về khung thời gian, chính sách áp dụng chung không thay đổi.
+                    </p>
+
+                    <p>Giá cho thuê xe sẽ phụ thộc vào loại xe bạn thuê và được công khai trên website. Chúng tôi cam
+                        kết sẽ không tăng giá thuê xe khi khách hàng đang sử dụng dịch vụ của chúng tôi. Để xem chi tiết
+                        mức giá từng loại xe xin vui lòng click vào <a href="">bảng giá thuê xe.</a></p>
+
+                    <p>Giá trị hợp đồng thuê xe sẽ được tính dựa trên thời gian thuê xe của khách và giá thuê xe tính
+                        theo đơn vị ngày, giờ đối với từng loại xe.</p>
+                </div>
+
+                @* content responsive guest *@
+                <div class="display-none form-content-detail content-resp_guest">
+                    <h3>Trách nhiệm bên thuê</h3>
+                    <p>Người thuê xe sẽ phải tự đổ nhiên liệu cho xe để di chuyển.</p>
+
+                    <p>Kiểm tra kỹ xe trước khi nhận và tự đổ nhiên liệu để lưu thông xe trên đường.</p>
+
+                    <p>Không được bóc hay làm rách tem bảo hành và đảm bảo sửa chữa, thay thế bất cứ chi tiết nào.</p>
+
+
+                    <p>Trong thời gian sử dụng xe thuê, bên B phải có trách nghiệm bảo vệ, giữ dìn và điều khiển xe tuân
+                        thủ đúng với luật oan toàn giao thông Việt Nam. Trường hợp xẩy ra vấn đề phát sinh sẽ được giải
+                        quyết như dưới đây:</p>
+
+                    <ul>
+                        <li><span>+ </span> Bên B phải báo lại cho bên A khi có các vấn đề hỏng hóc xẩy ra để hai bên
+                            thống nhất phương
+                            án thực hiện.</li>
+                        <li><span>+ </span> Mọi sự cố bẹp, nứt, vỡ, móp méo các chi tiết của xe do người thuê gây ra thì
+                            người thuê phải
+                            mua đồ của hãng thay thế (không chấp nhận gò, hàn).</li>
+                        <li><span>+ </span> Đối với việc thủng săm, thủng lốp khi lưu thông trên đường, khách thuê xe sẽ
+                            phải tự khắc
+                            phục và trả khoản phí vá săm hoặc thay thế.</li>
+                        <li><span>+ </span> Các vết xước, bẹp nhẹ không phải thay đồ mới thì người thuê phải bồi thường
+                            cho cho thuê số
+                            tiền theo báo giá thị trường.</li>
+                        <li><span>+ </span> Các ngày xe nghỉ không chạy được do lỗi của bên thuê, thì bạn vẫn phải trả
+                            tiền cho các ngày
+                            đó như đang thuê xe để sử dụng.</li>
+                        <li><span>+ </span> Trường hợp người thuê xe vi phạm an toàn giao thông dẫn tới xe bị giữ thì
+                            người thuê xe phải
+                            có tránh nhiệm đóng toàn bộ tiền các lỗi vi phạm và thời gian giữ xe vẫn tính là ngày cho
+                            thuê xe. Mọi chi phí đi lại, ăn ở, vvv…của bên cho thuê để giải quyết việc do bên thuê gây
+                            ra, bên thuê phải chịu hoàn toàn trách nhiệm chi trả.</li>
+                        <li><span>+ </span> Trong thời gian thuê xe người thuê làm mất xe, gây tai nạn nghiêm trọng dẫn
+                            đến xe bị phá
+                            hủy hoàn toàn thì người thuê phải chịu trách nhiệm đền tiền, giá trị tương đương với giá trị
+                            xe được định giá tại thời điểm cho thuê xe.</li>
+                    </ul>
+
+                    <p>Đối với khách đi dài, cứ sau 30 ngày bên B phải mang xe về để bên A kiểm tra và bảo dưỡng xe định
+                        kỳ 1 lần.</p>
+
+                    <p>Bên thuê phải có trách nhiệm trả xe đúng hạn như đã thống nhất trên hợp đồng. Trường hợp bên thuê
+                        muốn gia hạn thêm thời gian sử dụng thì phải liên hệ báo trước cho bên A, và khoản phát sinh
+                        thuê thêm sẽ vẫn được tính dựa trên bảng giá dịch vụ của bên A.</p>
+                </div>
+
+                @* content responsive owner *@
+                <div class="display-none form-content-detail content-resp_owner">
+                    <h3>Trách nhiệm bên cho thuê</h3>
+                    <p>Bên cho thuê phải đảm bảo xe cho thuê có đầy đủ điều kiện an toàn lưu thông trên đường, đúng như
+                        cam kết thỏa thuận với khách hàng. Với mỗi xe cho thuê chỉ đi kèm 02 mũ bảo hiểm theo tiêu
+                        chuẩn.</p>
+                    <p>Cung cấp các giấy tờ sau cho người thuê xe: Bản photo giấy đăng ký xe, Bảo hiểm trách nhiệm dân
+                        sự xe. Có trách nhiêm giúp đỡ, hỗ trợ, hướng dẫn người thuê trong các tình huống cần có sự xuất
+                        hiện của chủ xe.</p>
+
+                    <h3>Đổi trả, chấm dứt hợp đồng</h3>
+
+                    <p>Trường hợp dịch vụ cung cấp không đúng như cam kết giữa 2 bên, khách hàng có quyền từ chối sử
+                        dụng dịch vụ hoặc yêu cầu thay thế xe bằng loại xe khác đúng như yêu cầu. Bên cho thuê xe phải
+                        có trách nhiệm gửi trả lại toàn bộ tiền đặt cọc cho khách nếu khách từ chối sử dụng dịch vụ
+                        trong trường hợp này.</p>
+
+                    <p>Trường hợp khách hàng kết thúc hợp đồng thuê xe máy sớm hơn thời gian thống nhất ghi trong hợp
+                        đồng, bên cho thuê chấp nhận thời điểm trả xe là thời điểm kết thúc hợp đồng và giá trị hợp đồng
+                        được tính đến thời điểm đó. Tiền thừa sẽ được hoàn trả lại khách.</p>
+
+                    <p>Đối với khách đã đặt lịch thuê xe, khách hàng có thể hủy bỏ lịch đặt xe bất kỳ lúc nào mà không
+                        phải chịu khoản chi phí kèm theo.</p>
+                </div>
             </div>
         </div>
 
     </div>
 </div>
+
+
+<script>
+    const sibTime = document.querySelector("#btn-sib_time");
+    const sibProcedure = document.querySelector("#btn-sib_procedure");
+    const sibPrice = document.querySelector("#btn-sib_price");
+    const sibRespGuest = document.querySelector("#btn-sib_resp_guest");
+    const sibRespOwner = document.querySelector("#btn-sib_resp_owner");
+
+    @* remove .active *@
+
+    const handleRemoveActive = () => {
+
+        const listButton = document.querySelectorAll(".sibar button");
+
+        listButton.forEach(button => {
+            button.classList.remove("active");
+        });
+    }
+
+    @* add dis play none for all div content *@
+
+    const handleAddDisplayNone = () => {
+        const listContents = document.querySelectorAll(".form-content-detail");
+        listContents.forEach(div => {
+            div.classList.add("display-none")
+        })
+
+    }
+
+    @* time *@
+
+        sibTime.addEventListener("click", function () {
+
+            const content = document.querySelector(".content-time")
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            content.classList.remove("display-none")
+            sibTime.classList.add("active");
+        });
+
+
+    @* procedure *@
+
+        sibProcedure.addEventListener("click", function () {
+
+            const content = document.querySelector(".content-procedure");
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            content.classList.remove("display-none")
+            sibProcedure.classList.add("active");
+        });
+
+
+    @* price *@
+
+        sibPrice.addEventListener("click", function () {
+
+            const content = document.querySelector(".content-price");
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            sibPrice.classList.add("active");
+            content.classList.remove("display-none")
+        });
+
+    @* responsive guest *@
+
+        sibRespGuest.addEventListener("click", function () {
+
+            const content = document.querySelector(".content-resp_guest")
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            sibRespGuest.classList.add("active");
+            content.classList.remove("display-none")
+        });
+
+    @* responsive owner *@
+
+        sibRespOwner.addEventListener("click", function () {
+            const content = document.querySelector(".content-resp_owner")
+
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            sibRespOwner.classList.add("active");
+            content.classList.remove("display-none")
+        });
+</script>

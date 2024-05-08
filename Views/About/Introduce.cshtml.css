@@ -198,6 +198,7 @@
                 }
     
                 .list-item {
+                    margin-top: 50px;
                     .form-item {
                         margin-bottom: 15px;
                         background-color: #F1F1F1;
