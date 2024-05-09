@@ -16,8 +16,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-ConnectionService cn = new ConnectionService();
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
