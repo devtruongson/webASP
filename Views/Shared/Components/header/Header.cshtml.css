@@ -15,6 +15,7 @@ header {
     display        : flex;
     justify-content: space-between;
     align-items    : center;
+    position: relative;
 }
 
 .right-header ul {
@@ -31,4 +32,34 @@ header {
 .right-header ul li {
     font-weight: 700;
     color      : rgba(50, 47, 49, .85);
+}
+
+
+.form-search{
+    position: absolute;
+    z-index: 5;
+    margin-left: 70%;
+    margin-top: 100px;
+    width: 30%;
+    min-height: 50px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+
+    input{
+        width: 100%;
+        border-radius: 10px;
+        border: none;
+        height: 50px;
+    }
+
+    .form-list-car{
+        width: 100%;
+        
+    }
+}
+
+
+.display-none {
+    display: none;
 }
