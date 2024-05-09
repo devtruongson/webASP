@@ -9,4 +9,21 @@
     <partial name="~/Views/Shared/Components/home/CateCars/CateCars.cshtml" />
     <partial name="~/Views/Shared/Components/home/Detail/Detail.cshtml" />
     <partial name="~/Views/Shared/Components/home/Procedure/Procedure.cshtml" />
+  @{
+    var dataList = ViewBag.Data as List<string>;
+}
+
+@if (dataList != null)
+{
+    <ul>
+        @foreach (var item in dataList)
+        {
+            <li class="Data_list">@item</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No data available</p>
+}
 </div>
