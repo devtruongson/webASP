@@ -28,7 +28,7 @@ public class HomeController : Controller
             this.connection.Open();
             if (!string.IsNullOrEmpty(textSearch))
             {
-                string query = "SELECT * FROM [Products] WHERE model LIKE '%' + @textSearch + '%'";
+                string query = "SELECT * FROM [Products] WHERE model LIKE '%' + @textSearch + '%' OR brand LIKE '%' OR brand LIKE '%'+ @textSearch +'%''";
                 SqlCommand command = new SqlCommand(query, this.connection);
                 SqlDataReader reader = command.ExecuteReader();
                 List<string> listModal = new List<string>();
