@@ -1,15 +1,59 @@
 a {
   text-decoration: none;
-  color: currentColor;
+  color          : currentColor;
 }
 
 .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  position        : absolute;
+  top             : 0;
+  left            : 0;
+  right           : 0;
+  bottom          : 0;
   background-color: rgba(0, 0, 0, 0.4);
-  width: 100%;
-  height: 100%;
-}/*# sourceMappingURL=base.css.map */
+  width           : 100%;
+  height          : 100%;
+}
+
+.render-car-bike {
+  padding   : 0;
+  margin    : 0;
+  margin-top: 60px;
+}
+
+.render-car-bike .render-car-bike--item {
+  padding      : 6px 10px;
+  border-top   : 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.render-car-bike .render-car-bike--item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.render-car-bike .render-car-bike--item a {
+  display    : flex;
+  align-items: center;
+  gap        : 10px;
+  height     : 100%;
+}
+
+.render-car-bike .render-car-bike--item a img {
+  width        : 100px;
+  height       : 100px;
+  -o-object-fit: contain;
+  object-fit   : contain;
+}
+
+.render-car-bike .render-car-bike--item a h5 {
+  font-weight: 600;
+  font-size  : 17px;
+  margin     : 0;
+}
+
+.render-car-bike .render-car-bike--item a p {
+  font-size : 14px;
+  color     : #666;
+  font-style: italic;
+}
+
+/*# sourceMappingURL=base.css.map */

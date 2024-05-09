@@ -1,0 +1,29 @@
+<div>
+
+    @{
+        var data = ViewBag.Data as List<ProductDTO>;
+    }
+    @if (data != null)
+    {
+        <ul class="render-car-bike">
+            @foreach (var item in data)
+            {
+                <li class="render-car-bike--item">
+                    <a href="">
+                        <img src="/assets/imgs/@item.thumbnail" alt="">
+                        <div>
+                            <h5>@item.model</h5>
+                            <p class="m-0">@item.brand</p>
+                            <p>@item.capacity Phân Khối</p>
+                        </div>
+                    </a>
+                </li>
+            }
+
+        </ul>
+    }
+    else
+    {
+        <p>No data available</p>
+    }
+</div>

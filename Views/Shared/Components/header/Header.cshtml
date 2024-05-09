@@ -34,8 +34,12 @@
             </div>
 
             <div class="form-search shadow-lg display-none">
-                <input type="text" id="input-search" placeholder="Nhập tên xe muốn tìm...">
-                <div class="form-list-car">
+                <form asp-action="ProcessInput" method="post">
+                    <input type="text" name="viewInput" />
+                    <button type="submit">Gửi</button>
+                </form>
+
+                @* <div class="form-list-car">
                     <ul class="render-car-bike">
                         <li class="render-car-bike--item">
                             <a href="">
@@ -108,7 +112,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> *@
             </div>
         </div>
     </div>
