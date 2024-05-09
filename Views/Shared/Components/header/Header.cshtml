@@ -65,9 +65,9 @@
     @* close form search *@
 
         btnCloseSearch.addEventListener("click", () => {
-            btnSearch.classList.remove("display-none")
-            btnCloseSearch.classList.add("display-none")
-            formSearch.classList.add("display-none")
+            btnSearch.classList.remove("display-none");
+            btnCloseSearch.classList.add("display-none");
+            formSearch.classList.add("display-none");
         })
 
     @*change input *@
@@ -90,8 +90,6 @@
         console.log("text:", item.target.value);
     }, 1000);
 
-    inputSearch.addEventListener("input", debouncedInputChange)
-
-
+    inputSearch.addEventListener("input", debouncedInputChange);
 
 </script>
