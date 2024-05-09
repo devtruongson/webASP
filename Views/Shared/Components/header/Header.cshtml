@@ -34,62 +34,82 @@
             </div>
 
             <div class="form-search shadow-lg display-none">
-                <input type="text" id="input-search">
-
-                <div class="form-list-car"></div>
+                <input type="text" id="input-search" placeholder="Nhập tên xe muốn tìm...">
+                <div class="form-list-car">
+                    <ul class="render-car-bike">
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="render-car-bike--item">
+                            <a href="">
+                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
+                                    alt="">
+                                <div>
+                                    <h5>Đặt Xe Bike</h5>
+                                    <p>155 Phân Khối</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-
-
     </div>
 </header>
-
-<script>
-    const btnSearch = document.querySelector("#icon-search");
-    const btnCloseSearch = document.querySelector("#icon-close");
-    const formSearch = document.querySelector(".form-search");
-    const inputSearch = document.querySelector("#input-search")
-
-    let textSearch;
-
-    @* open form search *@
-
-        btnSearch.addEventListener("click", () => {
-            btnSearch.classList.add("display-none");
-            btnCloseSearch.classList.remove("display-none")
-            formSearch.classList.remove("display-none")
-            inputSearch.focus();
-
-        })
-
-    @* close form search *@
-
-        btnCloseSearch.addEventListener("click", () => {
-            btnSearch.classList.remove("display-none");
-            btnCloseSearch.classList.add("display-none");
-            formSearch.classList.add("display-none");
-        })
-
-    @*change input *@
-
-        const debounce = (func, time) => {
-        let timeoutId;
-        return function (...args) {
-
-            clearTimeout(timeoutId);
-
-            timeoutId = setTimeout(() => {
-                func.apply(this, args);
-            }, time);
-
-        };
-    }
-
-
-    const debouncedInputChange = debounce((item) => {
-        console.log("text:", item.target.value);
-    }, 1000);
-
-    inputSearch.addEventListener("input", debouncedInputChange);
-
-</script>

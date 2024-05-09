@@ -15,7 +15,7 @@ header {
     display        : flex;
     justify-content: space-between;
     align-items    : center;
-    position: relative;
+    position       : relative;
 }
 
 .right-header ul {
@@ -35,27 +35,72 @@ header {
 }
 
 
-.form-search{
-    position: absolute;
-    z-index: 5;
-    margin-left: 70%;
-    margin-top: 100px;
-    width: 30%;
-    min-height: 50px;
-    border-radius: 10px;
+.form-search {
+    position        : absolute;
+    z-index         : 5;
+    margin-left     : 70%;
+    top             : 10px;
+    width           : 30%;
+    min-height      : 50px;
+    border-radius   : 10px;
     background-color: #fff;
-    border: 1px solid #ddd;
+    border          : 1px solid #ddd;
+    overflow        : hidden;
 
-    input{
-        width: 100%;
+    input {
+        width        : 100%;
         border-radius: 10px;
-        border: none;
-        height: 50px;
+        border       : none;
+        height       : 50px;
+        outline      : none;
+        padding      : 0 10px;
     }
 
-    .form-list-car{
+    .form-list-car {
         width: 100%;
-        
+
+
+        .render-car-bike {
+            padding   : 0;
+            margin    : 0;
+            max-height: 300px;
+            overflow  : auto;
+
+            .render-car-bike--item {
+                padding      : 6px 10px;
+                border-top   : 1px solid #ccc;
+                border-bottom: 1px solid #ccc;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+
+                a {
+                    display    : flex;
+                    align-items: center;
+                    gap        : 10px;
+                    height     : 100%;
+
+                    img {
+                        width     : 40px;
+                        height    : 40px;
+                        object-fit: contain;
+                    }
+
+                    h5 {
+                        font-weight: 600;
+                        font-size  : 17px;
+                        margin     : 0;
+                    }
+
+                    p {
+                        font-size : 14px;
+                        color     : #666;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
     }
 }
 
