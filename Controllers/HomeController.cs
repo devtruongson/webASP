@@ -18,6 +18,10 @@ public class HomeController : Controller
         this.connection = cnService.cn;
     }
 
+    public IActionResult Index()
+    {
+        return View();
+    }
 
 
     [HttpPost]
@@ -59,11 +63,6 @@ public class HomeController : Controller
         }
         return View();
     }
-
-
-
-
-
 
     public IActionResult Privacy()
     {
