@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
@@ -17,26 +18,50 @@ public class HomeController : Controller
         this.connection = cnService.cn;
     }
 
-    public IActionResult Index()
+
+
+    [HttpPost]
+    public IActionResult HandleSearch(string textSearch)
     {
         if (this.connection != null)
         {
             this.connection.Open();
-            string query = "select * from [All-code]";
-            SqlCommand command = new SqlCommand(query, this.connection);
-            SqlDataReader reader = command.ExecuteReader();
-            List<string> dataList = new List<string>();
-
-            while (reader.Read())
+            if (!string.IsNullOrEmpty(textSearch))
             {
-                string dataItem = reader["content_title"].ToString();
-                dataList.Add(dataItem);
+                string query = "SELECT * FROM [Products] WHERE model LIKE '%' + @textSearch + '%' OR brand LIKE '%' OR brand LIKE '%'+ @textSearch +'%''";
+                SqlCommand command = new SqlCommand(query, this.connection);
+                SqlDataReader reader = command.ExecuteReader();
+                List<string> listModal = new List<string>();
+                List<string> listBrand = new List<string>();
+                List<string> listCapacity = new List<string>();
+                List<string> listThumbnail = new List<string>();
+
+                while (reader.Read())
+                {
+                    string modal = reader["model"].ToString();
+                    string brand = reader["brand"].ToString();
+                    string capacity = reader["capacity"].ToString();
+                    string thumbnail = reader["thumbnail"].ToString();
+
+                    listModal.Add(modal);
+                    listBrand.Add(brand);
+                    listCapacity.Add(capacity);
+                    listThumbnail.Add(thumbnail);
+                }
+
+                ViewBag.DataModal = listModal;
+                ViewBag.DataBrand = listBrand;
+                ViewBag.DataCapacity = listCapacity;
+                ViewBag.DataThumbnail = listThumbnail;
             }
-            ViewBag.Data = dataList;
+
             this.connection.Close();
         }
         return View();
     }
+
+
+
 
 
 
