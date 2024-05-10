@@ -23,57 +23,22 @@ public class HomeController : Controller
         return View();
     }
 
-
-    [HttpPost]
-    public IActionResult HandleSearch(string textSearch)
-    {
-        if (this.connection != null)
-        {
-            this.connection.Open();
-            if (!string.IsNullOrEmpty(textSearch))
-            {
-                string query = "SELECT * FROM [Products] WHERE model LIKE '%' + @textSearch + '%' OR brand LIKE '%' OR brand LIKE '%'+ @textSearch +'%''";
-                SqlCommand command = new SqlCommand(query, this.connection);
-                SqlDataReader reader = command.ExecuteReader();
-                List<string> listModal = new List<string>();
-                List<string> listBrand = new List<string>();
-                List<string> listCapacity = new List<string>();
-                List<string> listThumbnail = new List<string>();
-
-                while (reader.Read())
-                {
-                    string modal = reader["model"].ToString();
-                    string brand = reader["brand"].ToString();
-                    string capacity = reader["capacity"].ToString();
-                    string thumbnail = reader["thumbnail"].ToString();
-
-                    listModal.Add(modal);
-                    listBrand.Add(brand);
-                    listCapacity.Add(capacity);
-                    listThumbnail.Add(thumbnail);
-                }
-
-                ViewBag.DataModal = listModal;
-                ViewBag.DataBrand = listBrand;
-                ViewBag.DataCapacity = listCapacity;
-                ViewBag.DataThumbnail = listThumbnail;
-            }
-
-            this.connection.Close();
-        }
-        return View();
-    }
-
     public IActionResult Privacy()
     {
         return View();
     }
 
     [HttpPost]
-    public IActionResult ProcessInput(string viewInput)
+    public IActionResult HandleData(string viewInput)
     {
-        List<ProductDTO> data = new List<ProductDTO>();
+        return RedirectToAction("Search", "Home", new { query = viewInput });
+    }
 
+
+    public List<ProductDTO> GetDataOnDataBase(string viewInput)
+    {
+
+        List<ProductDTO> data = new List<ProductDTO>();
         if (this.connection != null)
         {
             this.connection.Open();
@@ -91,10 +56,19 @@ public class HomeController : Controller
                 ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price);
                 data.Add(product);
             }
-            ViewBag.Data = data;
         }
+        return data;
+    }
+    public IActionResult Search()
+    {
+        string queryString = Request.Query["query"].ToString();
+        List<ProductDTO> data = GetDataOnDataBase(queryString);
+
+        ViewBag.Query = queryString;
+        ViewBag.Data = data;
         return View("~/Views/Search/Search.cshtml");
     }
+
 
     public IActionResult About()
     {

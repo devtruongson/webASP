@@ -21,9 +21,9 @@ a {
 }
 
 .render-car-bike .render-car-bike--item {
-  padding      : 6px 10px;
-  border-top   : 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  padding   : 6px 10px;
+  border-top: 1px solid #ccc;
+  border    : 1px solid #ccc;
 }
 
 .render-car-bike .render-car-bike--item:hover {

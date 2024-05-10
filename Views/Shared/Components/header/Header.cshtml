@@ -34,85 +34,12 @@
             </div>
 
             <div class="form-search shadow-lg display-none">
-                <form asp-action="ProcessInput" method="post">
-                    <input type="text" name="viewInput" />
-                    <button type="submit">Gửi</button>
+                <form asp-action="HandleData" method="post" asp-controller="Home">
+                    <div style="display: flex; align-items: center; gap: 4px; padding: 2px 4px;">
+                        <input type="text" name="viewInput" placeholder="Nhap xe tim kiem..." required />
+                        <button type="submit" class="btn btn-primary">Gửi</button>
+                    </div>
                 </form>
-
-                @* <div class="form-list-car">
-                    <ul class="render-car-bike">
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="render-car-bike--item">
-                            <a href="">
-                                <img src="https://motogo.vn/wp-content/uploads/2020/04/cho-thue-xe-may-ha-noi-min.png"
-                                    alt="">
-                                <div>
-                                    <h5>Đặt Xe Bike</h5>
-                                    <p>155 Phân Khối</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div> *@
             </div>
         </div>
     </div>
