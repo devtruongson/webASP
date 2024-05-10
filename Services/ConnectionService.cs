@@ -18,6 +18,7 @@ public class ConnectionService
         catch (Exception e)
         {
             Console.WriteLine("", e.ToString());
+            Console.WriteLine("abc");
         }
     }
 

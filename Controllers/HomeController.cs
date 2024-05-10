@@ -87,7 +87,8 @@ public class HomeController : Controller
                 string brand = reader["brand"].ToString();
                 string capacity = reader["capacity"].ToString();
                 string thumbnail = reader["thumbnail"].ToString();
-                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail);
+                string price = reader["price"].ToString();
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price);
                 data.Add(product);
             }
             ViewBag.Data = data;

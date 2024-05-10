@@ -47,4 +47,33 @@
         }
 
    }
+
+
+   .form-table-price{
+    padding: 50px;
+
+    table{
+        width: 100%;
+        margin-top: 50px;
+        border: 1px solid #ccc;
+
+        thead{
+            tr{
+                th{
+                    padding: 10px;
+                    background-color: #fcb900;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding: 10px;
+                    border:1px solid #ccc;
+                }
+            }
+        }
+       }
+   }
+   
 }
