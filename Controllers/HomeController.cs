@@ -47,11 +47,12 @@ public class HomeController : Controller
             while (reader.Read())
             {
                 int id = Convert.ToInt32(reader["Id"]);
-                string? model = reader["model"].ToString();
-                string? brand = reader["brand"].ToString();
-                string? capacity = reader["capacity"].ToString();
-                string? thumbnail = reader["thumbnail"].ToString();
-                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail);
+                string model = reader["model"].ToString();
+                string brand = reader["brand"].ToString();
+                string capacity = reader["capacity"].ToString();
+                string thumbnail = reader["thumbnail"].ToString();
+                string price = reader["price"].ToString();
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price);
                 data.Add(product);
             }
             this.connection.Close();

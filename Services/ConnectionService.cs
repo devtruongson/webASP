@@ -7,7 +7,7 @@ public class ConnectionService
 
     public ConnectionService()
     {
-        string connectionString = "server=(local);database=manage-rent-bikeee;Integrated Security=True";
+        string connectionString = "server=(local);database=manage-rent-bikee;Integrated Security=True";
 
         try
         {
@@ -18,6 +18,7 @@ public class ConnectionService
         catch (Exception e)
         {
             Console.WriteLine("", e.ToString());
+            Console.WriteLine("abc");
         }
     }
 

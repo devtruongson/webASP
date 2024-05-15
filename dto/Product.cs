@@ -18,13 +18,14 @@ public class ProductDTO
 
     public ProductDTO() { }
 
-    public ProductDTO(int id, string model, string brand, string capacity, string thumbnail)
+    public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string price)
     {
         this.id = id;
         this.model = model;
         this.brand = brand;
         this.capacity = capacity;
         this.thumbnail = thumbnail;
+        this.price = price;
     }
 
     public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string required_age, int count_rented, int count_remaining, string content_markdow, string content_HTML, string location_id, string precent_new, string price)
