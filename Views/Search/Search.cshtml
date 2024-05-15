@@ -2,6 +2,7 @@
     var data = ViewBag.Data as List<ProductDTO>;
     var query = ViewBag.Query as string;
     ViewData["Title"] = "Tìm kiếm xe với từ khóa " + query;
+    Console.WriteLine("data : " + data);
 }
 
 <div>
@@ -21,7 +22,7 @@
                 @foreach (var item in data)
                 {
                     <div class="render-car-bike--item col-6">
-                        <a href="">
+                        <a href="/product/ProductDetail?id=@item.id&name=@item.model">
                             <img src="/assets/imgs/@item.thumbnail" alt="">
                             <div>
                                 <h5>@item.model</h5>
@@ -31,7 +32,6 @@
                         </a>
                     </div>
                 }
-
             </div>
         </div>
     }

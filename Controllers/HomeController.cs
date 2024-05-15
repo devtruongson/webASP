@@ -34,7 +34,6 @@ public class HomeController : Controller
         return RedirectToAction("Search", "Home", new { query = viewInput });
     }
 
-
     public List<ProductDTO> GetDataOnDataBase(string viewInput)
     {
 
@@ -56,16 +55,18 @@ public class HomeController : Controller
                 ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price);
                 data.Add(product);
             }
+            this.connection.Close();
         }
         return data;
     }
+
     public IActionResult Search()
     {
         string queryString = Request.Query["query"].ToString();
         List<ProductDTO> data = GetDataOnDataBase(queryString);
 
-        ViewBag.Query = queryString;
         ViewBag.Data = data;
+        ViewBag.Query = queryString;
         return View("~/Views/Search/Search.cshtml");
     }
 

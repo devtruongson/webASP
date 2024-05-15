@@ -1,0 +1,15 @@
+@{
+    string nameProduct = ViewBag.productName as string;
+    ViewData["Title"] = "Thông Tin Chi Tiết Xe - "  + nameProduct;
+    ViewData["Description"] = "MOTOGO là dịch vụ cho thuê xe máy tự lái chuyên nghiệp tại Việt Nam, cho phép người thuê có thể nhận xe tại một điểm và trả xe tại một điểm khác trên cùng một hệ thống.";
+
+    var product = ViewBag.Product as ProductDTO;
+}
+
+<div>
+    <h1>Thông Tin Chi Tiết Xe @nameProduct</h1>
+    <img src="/assets/imgs/@product?.thumbnail" />
+    <div>
+        @product?.content_HTML
+    </div>
+</div>
