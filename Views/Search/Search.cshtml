@@ -9,7 +9,8 @@
     @if (data != null)
     {
         <div style="width: 100%; overflow: hidden;">
-            <form asp-action="/Home/Search" method="post" style="max-width: 50%; margin: 0 auto;margin-top: 30px;">
+            <form asp-action="HandleData" method="post" asp-controller="Home"
+                style="max-width: 50%; margin: 0 auto;margin-top: 30px;">
                 <div style="display: flex; align-items: center; gap: 4px; padding: 2px 4px;">
                     <input type="text" class="form-control" value="@query" name="viewInput"
                         placeholder="Nhap xe tim kiem..." required />
