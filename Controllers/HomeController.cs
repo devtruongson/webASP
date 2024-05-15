@@ -52,7 +52,7 @@ public class HomeController : Controller
                 string capacity = reader["capacity"].ToString();
                 string thumbnail = reader["thumbnail"].ToString();
                 string price = reader["price"].ToString();
-                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price);
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, "location");
                 data.Add(product);
             }
             this.connection.Close();

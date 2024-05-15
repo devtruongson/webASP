@@ -15,10 +15,11 @@ public class ProductDTO
     public readonly string? location_id;
     public readonly string? precent_new;
     public readonly string? price;
+    public readonly string? location;
+
 
     public ProductDTO() { }
-
-    public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string price)
+    public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string price, string location)
     {
         this.id = id;
         this.model = model;
@@ -26,6 +27,7 @@ public class ProductDTO
         this.capacity = capacity;
         this.thumbnail = thumbnail;
         this.price = price;
+        this.location = location;
     }
 
     public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string required_age, int count_rented, int count_remaining, string content_markdow, string content_HTML, string location_id, string precent_new, string price)
