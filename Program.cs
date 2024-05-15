@@ -28,6 +28,11 @@ app.MapControllerRoute(
     defaults: new { controller = "About", action = "Index" }
 );
 app.MapControllerRoute(
+   name: "product",
+    pattern: "product/*",
+    defaults: new { controller = "Product", action = "ProductDetail" }
+);
+app.MapControllerRoute(
     name: "system",
     pattern: "system/*",
     defaults: new { controller = "System", action = "Index" }

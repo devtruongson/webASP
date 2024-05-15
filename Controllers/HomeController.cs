@@ -34,7 +34,6 @@ public class HomeController : Controller
         return RedirectToAction("Search", "Home", new { query = viewInput });
     }
 
-
     public List<ProductDTO> GetDataOnDataBase(string viewInput)
     {
 
@@ -48,23 +47,25 @@ public class HomeController : Controller
             while (reader.Read())
             {
                 int id = Convert.ToInt32(reader["Id"]);
-                string model = reader["model"].ToString();
-                string brand = reader["brand"].ToString();
-                string capacity = reader["capacity"].ToString();
-                string thumbnail = reader["thumbnail"].ToString();
+                string? model = reader["model"].ToString();
+                string? brand = reader["brand"].ToString();
+                string? capacity = reader["capacity"].ToString();
+                string? thumbnail = reader["thumbnail"].ToString();
                 ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail);
                 data.Add(product);
             }
+            this.connection.Close();
         }
         return data;
     }
+
     public IActionResult Search()
     {
         string queryString = Request.Query["query"].ToString();
         List<ProductDTO> data = GetDataOnDataBase(queryString);
 
-        ViewBag.Query = queryString;
         ViewBag.Data = data;
+        ViewBag.Query = queryString;
         return View("~/Views/Search/Search.cshtml");
     }
 
