@@ -21,7 +21,6 @@ public class SystemController : Controller
         return View();
     }
 
-
     [HttpPost]
     public String HandleLogin(string email, string password)
     {
