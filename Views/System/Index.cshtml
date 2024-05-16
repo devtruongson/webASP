@@ -1,20 +1,39 @@
 @{
     ViewData["Title"] = "Quản lí xe dành cho admin";
     ViewData["Description"] = "MOTOGO là dịch vụ cho thuê xe máy tự lái chuyên nghiệp tại Việt Nam, cho phép người thuê có thể nhận xe tại một điểm và trả xe tại một điểm khác trên cùng một hệ thống.";
+
+    @* var email = ViewBag.Query as string; *@
+
 }
 
 <div  class="form-login">
     <div class="form-control shadow">
-        <h4>Login</h4>
+        <div class="form-header">
+            <h4>Login</h4>
+        </div>
 
+<form asp-action="HandleLogin" method="post">
         <div class="form-input">
-            <label for="email">Email</label><br/>
-            <input type="email" id="email" required placeholder="Type your Email">
+            <label for="email"><i class="bi bi-person"></i>Email</label><br/>
+            <input type="email" id="email" required placeholder="Type your Email"  name="email">
         </div>
 
         <div class="form-input">
-            <label for="password">password</label><br/>
-            <input type="password" id="password" required placeholder="Type your password">
+            <label for="password"><i class="bi bi-key"></i>Password</label><br/>
+            <input type="password" id="password" required placeholder="Type your password" name="password">
         </div>
+
+        <div class="form-forget">
+            <p>forget password ?</p>
+        </div>
+
+        <button>Login</button>
+                </form>
+
+
+        <div class="form-logo">
+            @* <img src="https://motogo.vn/wp-content/themes/motogo/images/moto-icon.jpg" alt=""> *@
+            <img src="https://motogo.vn/wp-content/themes/motogo/images/logo.svg" alt="">
+</div>
     </div>
 </div>
