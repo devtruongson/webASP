@@ -1,20 +1,20 @@
-using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using System.Data.SqlClient;
+
 
 namespace webASP.Controllers;
 public class SystemController : Controller
 {
 
-    // private readonly ILogger<SystemController> _logger;
-    // private readonly SqlConnection? connection;
+    private readonly ILogger<SystemController> _logger;
+    private readonly SqlConnection? connection;
 
-    // public SystemController(ILogger<SystemController> logger)
-    // {
-    //     // _logger = logger;
-    //     // ConnectionService cnService = new ConnectionService();
-    //     // this.connection = cnService.cn;
-
-    // }
+    public SystemController(ILogger<SystemController> logger)
+    {
+        _logger = logger;
+        ConnectionService cnService = new ConnectionService();
+        this.connection = cnService.cn;
+    }
 
     public IActionResult Index()
     {

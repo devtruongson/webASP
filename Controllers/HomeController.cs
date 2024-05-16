@@ -11,12 +11,12 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly SqlConnection? connection;
 
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-        ConnectionService cnService = new ConnectionService();
-        this.connection = cnService.cn;
-    }
+    // public HomeController(ILogger<HomeController> logger)
+    // {
+    //     _logger = logger;
+    //     ConnectionService cnService = new ConnectionService();
+    //     this.connection = cnService.cn;
+    // }
 
     public IActionResult Index()
     {
