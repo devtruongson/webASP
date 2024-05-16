@@ -60,7 +60,6 @@ public class AboutController : Controller
                 string thumbnail = reader["thumbnail"].ToString();
                 string price = reader["price"].ToString();
 
-
                 ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, "location");
                 data.Add(product);
             }
