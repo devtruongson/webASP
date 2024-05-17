@@ -1,0 +1,83 @@
+<div class="main">
+    <h4 class="text-center">Admin</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <div class="sibar">
+                    <div class="sibar-control">
+                        <button id="btn-info-admin" class="active">Quản Lí Thông tin</button>
+                    </div>
+                    <div class="sibar-control">
+                        <button id="btn-price">Quản Lí Price</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-10">
+                <div class="form-info-admin form-content">
+                    <partial name="~/Views/System/InfoAdmin.cshtml" />
+                </div>
+
+                <div class="form-price form-content display-none">
+                    <partial name="~/Views/System/PriceCars.cshtml" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    if (!JSON.parse(localStorage.getItem("isLoginIn"))) {
+        alert("Bạn không có quyền!");
+        window.location.href = "http://localhost:8080/System";
+    }
+
+    const sibInfoAdmin = document.querySelector("#btn-info-admin");
+    const sibPrice = document.querySelector("#btn-price");
+
+    const handleRemoveActive = () => {
+
+        const listButton = document.querySelectorAll(".sibar button");
+
+        listButton.forEach(button => {
+            button.classList.remove("active");
+        });
+    }
+
+    const handleAddDisplayNone = () => {
+        const listContents = document.querySelectorAll(".form-content");
+        listContents.forEach(div => {
+            div.classList.add("display-none")
+        })
+
+    }
+
+    @* info admin *@
+
+        sibInfoAdmin.addEventListener("click", function () {
+
+            const content = document.querySelector(".form-info-admin")
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            content.classList.remove("display-none")
+            sibInfoAdmin.classList.add("active");
+        });
+
+    @* price *@
+
+        sibPrice.addEventListener("click", function () {
+
+            const content = document.querySelector(".form-price ")
+
+            handleRemoveActive();
+            handleAddDisplayNone();
+
+            content.classList.remove("display-none")
+            sibPrice.classList.add("active");
+        });
+
+
+</script>

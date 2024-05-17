@@ -2,8 +2,10 @@
     ViewData["Title"] = "Quản lí xe dành cho admin";
     ViewData["Description"] = "MOTOGO là dịch vụ cho thuê xe máy tự lái chuyên nghiệp tại Việt Nam, cho phép người thuê có thể nhận xe tại một điểm và trả xe tại một điểm khác trên cùng một hệ thống.";
 
-    @* var email = ViewBag.Query as string; *@
-
+    var info = ViewBag.Info as InfoLoginDto;
+    var email = ViewBag.Email as string;
+    var password = ViewBag.Password as string;
+    var check = ViewBag.Check as string;
 }
 
 <div  class="form-login">
@@ -12,15 +14,17 @@
             <h4>Login</h4>
         </div>
 
-<form asp-action="HandleLogin" method="post">
+
+<form asp-action="HandleLogin" method="post" asp-controller="System">
+    <p>@check</p>
         <div class="form-input">
             <label for="email"><i class="bi bi-person"></i>Email</label><br/>
-            <input type="email" id="email" required placeholder="Type your Email"  name="email">
+            <input type="text" id="email" placeholder="Type your Email"  name="email" value="@email">
         </div>
 
         <div class="form-input">
             <label for="password"><i class="bi bi-key"></i>Password</label><br/>
-            <input type="password" id="password" required placeholder="Type your password" name="password">
+            <input type="password" id="password" required placeholder="Type your password" name="password" value="@password">
         </div>
 
         <div class="form-forget">
@@ -37,3 +41,29 @@
 </div>
     </div>
 </div>
+
+
+<script>
+    if(window.location.search.includes("isValid")) {
+        alert("Email hoặc mật khẩu chưa đúng");
+        window.location.href = window.location.href.replace(window.location.href.split("?")[1], "")
+    }
+    
+    if(window.location.search.split("?")[1]?.split("&")?.length ===2){
+        localStorage.setItem("isLoginIn", "true");
+        const data = [];
+        if(window.location.search.split("?")[1]?.split("&")?.length ===2) {
+            window.location.search.split("?")[1].split("&").forEach(x => {
+                const value = x.split("=")[1];
+                data.push(value);
+            })
+        }
+        localStorage.setItem("dataUser", JSON.stringify(data));
+        window.location.href = "http://localhost:8080/System/Dashboard";
+    }
+
+    if(JSON.parse(localStorage.getItem("isLoginIn"))) {
+          window.location.href = "http://localhost:8080/System/Dashboard";
+    }
+    
+</script>

@@ -16,18 +16,31 @@ public class SystemController : Controller
         this.connection = cnService.cn;
     }
 
-    public IActionResult Index()
-    {
-        return View();
-    }
 
     [HttpPost]
-    public String HandleLogin(string email, string password)
+    public IActionResult HandleLogin(string email, string password)
     {
-        Console.WriteLine(email);
-        Console.WriteLine(password);
-        return email;
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "select * from Admin where email = '" + email + "' and password = '" + password + "'";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            SqlDataReader reader = command.ExecuteReader();
+            if (!reader.Read())
+            {
+                return RedirectToAction("Index", "System", new { isValid = "wrong password or email" });
+            }
+        }
+        return RedirectToAction("Index", "System", new { email = email, password = password });
     }
 
+    public IActionResult Index()
+    {
+        return View("~/Views/System/Index.cshtml");
+    }
 
+    public IActionResult Dashboard()
+    {
+        return View("~/Views/System/Dashboard.cshtml");
+    }
 }

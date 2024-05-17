@@ -1,0 +1,25 @@
+.display-none{
+    display: none;
+}
+
+.active{
+    color: #fff;
+    background-color: #ffc107;
+}
+
+
+.sibar{
+    width: 100%;
+    .sibar-control{
+        width: 100%;
+        margin-top: 20px;
+
+        button {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 8px;
+
+        }
+    }
+}
