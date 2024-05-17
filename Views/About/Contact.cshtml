@@ -15,35 +15,33 @@
         <div class="form-content row">
             <div class="col col-5 control-contact">
                 <h3>Liên hệ với chúng tôi</h3>
-
-                <div class="row">
-                    <div class="col col-6">
-                        <div class="form-input">
-                            <label for="name">Tên của bạn (bắt buộc)</label><br />
-                            <input type="text" id="name" class="shadow-sm">
+                <form asp-action="HandleDataFormContact" method="post" asp-controller="About">
+                    <div class="row">
+                        <div class="col col-6">
+                            <div class="form-input">
+                                <label for="name">Tên của bạn (bắt buộc)</label><br />
+                                <input type="text" id="name" name="Name" class="shadow-sm" required>
+                            </div>
+                        </div>
+                        <div class="col col-6">
+                            <div class="form-input">
+                                <label for="location">Địa chỉ Email (bắt buộc)</label><br />
+                                <input type="text" id="location" name="Email" class="shadow-sm" required>
+                            </div>
                         </div>
                     </div>
-                    <div class="col col-6">
-                        <div class="form-input">
-                            <label for="location">Địa chỉ Email (bắt buộc)</label><br />
-                            <input type="text" id="location" class="shadow-sm">
-                        </div>
+                    <div class="form-input">
+                        <label for="title">Tiêu đề:</label><br />
+                        <input type="text" id="title" name="Title" class="shadow-sm" required>
                     </div>
-                </div>
-
-                <div class="form-input">
-                    <label for="title">Tiêu đề:</label><br />
-                    <input type="text" id="title" class="shadow-sm">
-                </div>
-
-                <div class="form-input">
-                    <label for="message">Thông điệp</label><br />
-                    <textarea name="" id="message" class="shadow-sm"></textarea>
-                </div>
-
-                <div class="btn-sent">
-                    <p>Gửi đi <i class="bi bi-0-square-fill"></i></p>
-                </div>
+                    <div class="form-input">
+                        <label for="message">Thông điệp</label><br />
+                        <textarea name="Description" id="message" class="shadow-sm" required></textarea>
+                    </div>
+                    <div class="btn-sent">
+                        <button>Gửi đi <i class="bi bi-0-square-fill"></i></p>
+                    </div>
+                </form>
 
             </div>
 
@@ -83,3 +81,13 @@
     </div>
 
 </div>
+
+
+
+<script>
+
+    if (window.location.search.split('?')[1] === "isContactDone=True") {
+        alert("Bạn đã đăng ký nhận tin thành công!")
+        window.location.href = window.location.href.replace(window.location.search.split('?')[1], "")
+    }
+</script>

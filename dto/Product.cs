@@ -19,7 +19,7 @@ public class ProductDTO
 
 
     public ProductDTO() { }
-    public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string price, string location)
+    public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string price, string location, string percentNew)
     {
         this.id = id;
         this.model = model;
@@ -28,6 +28,7 @@ public class ProductDTO
         this.thumbnail = thumbnail;
         this.price = price;
         this.location = location;
+        this.precent_new = percentNew;
     }
 
     public ProductDTO(int id, string model, string brand, string capacity, string thumbnail, string required_age, int count_rented, int count_remaining, string content_markdow, string content_HTML, string location_id, string precent_new, string price)

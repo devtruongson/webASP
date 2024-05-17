@@ -1,38 +1,176 @@
 @{
     var data = ViewBag.Data as List<ProductDTO>;
     var query = ViewBag.Query as string;
+    var capacity = ViewBag.capacity as string;
+    var price = ViewBag.price as string;
+    var startPrice = ViewBag.startPrice as string;
+    var endPrice = ViewBag.endPrice as string;
+    var percent = ViewBag.percent as string;
+    var startPercent = ViewBag.startPercent as string;
+    var endPercent = ViewBag.endPercent as string;
+
+    bool checkFilterCapacity(string filter)
+    {
+        if (capacity == null)
+        {
+            return false;
+        }
+        else if (capacity.Equals(filter))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    double convertValue(string value)
+    {
+        return Double.Parse(string.IsNullOrEmpty(value) ? "0" : value);
+    }
+
+    string convertString(double valueStart, double valueEnd)
+    {
+        return valueStart.ToString() + "and" + valueEnd.ToString();
+    }
+
+    string formatVnd(string value)
+    {
+        var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+        return String.Format(info, "{0:c}", Double.Parse(value));
+    }
+
     ViewData["Title"] = "Tìm kiếm xe với từ khóa " + query;
-    Console.WriteLine("data : " + data);
 }
 
 <div>
     @* <h2 class="text-center mt-5 pt-4">Kết quả tìm kiếm</h2> *@
     @if (data != null)
     {
-        <div style="width: 100%; overflow: hidden;">
-            <form asp-action="HandleData" method="post" asp-controller="Home"
-                style="max-width: 50%; margin: 0 auto;margin-top: 30px;">
+        <div style="width: 100%; overflow: hidden;" class="container">
+            <form id="form_search_input" style="max-width: 50%; margin: 0 auto;margin-top: 30px;">
                 <div style="display: flex; align-items: center; gap: 4px; padding: 2px 4px;">
                     <input type="text" class="form-control" value="@query" name="viewInput"
                         placeholder="Nhap xe tim kiem..." required />
                     <button type="submit" class="btn btn-primary">Gửi</button>
                 </div>
             </form>
-            <div class="render-car-bike row">
-                @foreach (var item in data)
-                {
-                    <div class="render-car-bike--item col-6">
-                        <a href="/product/ProductDetail?id=@item.id&name=@item.model">
-                            <img src="/assets/imgs/@item.thumbnail" alt="">
-                            <div>
-                                <h5>@item.model</h5>
-                                <p class="m-0">@item.brand</p>
-                                <p>@item.capacity Phân Khối</p>
-                                <p>@item.location Phân Khối</p>
+            <div class="row">
+                <form class="col-3 py-3" id="form_filter_search" style="position: sticky; top: 0;">
+                    <input type="text" class="form-control" id="query_search_hidden" value="@query" name="query" hidden />
+                    <div style=" margin-top: 60px; border: 1px solid #ccc; border-radius: 6px; background-color: #fff;"
+                        class="px-2 py-3 shadow-sm">
+                        <h3 style="font-style: italic; font-size: 18px;">Lọc theo</h3>
+                        <div class="mt-3">
+                            <div class="mb-3 form-check">
+                                <input type="radio" checked name="capacity-filter" value="0and1000" class="form-check-input"
+                                    id="capacity-0-1000cc">
+                                <label style="user-select: none;" class="form-check-label" for="capacity-0-1000cc">Xe Dưới
+                                    1000cc</label>
                             </div>
-                        </a>
+                            <div class="mb-3 form-check">
+                                <input type="radio" checked="@checkFilterCapacity("0and100")" name="capacity-filter"
+                                    value="0and100" class="form-check-input" id="capacity-0-100cc">
+                                <label style="user-select: none;" class="form-check-label" for="capacity-0-100cc">Xe Dưới
+                                    100cc</label>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="radio" checked="@checkFilterCapacity("100and120")" name="capacity-filter"
+                                    value="100and120" class="form-check-input" id="capacity-100-120cc">
+                                <label style="user-select: none;" class="form-check-label" for="capacity-100-120cc">Xe Từ
+                                    100cc - 120cc</label>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="radio" checked="@checkFilterCapacity("120and150")" name="capacity-filter"
+                                    value="120and150" class="form-check-input" id="capacity-120-150cc">
+                                <label style="user-select: none;" class="form-check-label" for="capacity-120-150cc">Xe Từ
+                                    120cc - 150cc</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" checked="@checkFilterCapacity("150and1000")" checke="false"
+                                    name="capacity-filter" value="150and1000" class="form-check-input"
+                                    id="capacity-150-anycc">
+                                <label style="user-select: none;" class="form-check-label" for="capacity-150-anycc">Xe Từ
+                                    150cc</label>
+                            </div>
+                            <hr />
+                            <div>
+                                <div class="row">
+                                    <label for="price" class="form-label">Lọc theo giá</label>
+                                    <div class="mb-3 col-6">
+                                        <input type="number" value="@convertValue(@startPrice)"
+                                            class="form-control inpu input_price" id="price" placeholder="từ">
+                                    </div>
+                                    <div class="mb-3 col-6">
+                                        <input type="number" value="@convertValue(@endPrice)"
+                                            class="form-control input_price" id="price" placeholder="đến">
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <label for="percentnew" class="form-label">Lọc theo độ mới xe</label>
+                                    <div class="mb-3 col-6">
+                                        <input type="number" value="@convertValue(@startPercent)"
+                                            class="form-control percent_filter" id="percentnew" placeholder="từ">
+                                    </div>
+                                    <div class="mb-3 col-6">
+                                        <input type="number" value="@convertValue(@endPercent)"
+                                            class="form-control percent_filter" id="percentnew" placeholder="đến">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3 d-flex justify-content-center align-items-center">
+                            <button class="btn btn-warning">
+                                Xác Nhận
+                            </button>
+                        </div>
                     </div>
-                }
+                </form>
+                <div class="col-9">
+                    @if (data.Count > 0)
+                    {
+                        <div class="render-car-bike row">
+                            @foreach (var item in data)
+                            {
+                                <div class="render-car-bike--item col-6 mt-3">
+                                    <a href="/product/ProductDetail?id=@item.id&name=@item.model" class="shadow-sm">
+                                        <img src="/assets/imgs/@item.thumbnail" alt="">
+                                        <div style="flex: 1;">
+                                            <h5>@item.model</h5>
+                                            <p class="m-0 p-0 mb-1 mt-2"
+                                                style="display: flex;align-items:center; justify-content: space-between;">
+                                                <span>@item.brand</span>
+                                                <span>@item.capacity Phân Khối</span>
+                                            </p>
+                                            <p class="p-0 m-0"
+                                                style="display: flex;align-items:center; justify-content: space-between;">
+                                                <span>@formatVnd(item.price) / ngày</span>
+                                                <span>@item.location</span>
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="render-car-bike row">
+                            <div class="render-car-bike--item col-6 mt-3">
+                                <a href="#" class="shadow-sm">
+                                    <img src="https://static.vecteezy.com/system/resources/previews/007/415/858/original/holding-signboard-404-not-found-cute-pear-cartoon-vector.jpg"
+                                        alt="">
+                                    <div>
+                                        <h5>Chúng tôi không tìm thấy xe phù hợp với bạn</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    }
+
+                </div>
             </div>
         </div>
     }
@@ -41,3 +179,52 @@
         <p>No data available</p>
     }
 </div>
+
+<script>
+    const form = document.querySelector('#form_filter_search')
+    const capacityFilter = document.querySelectorAll('.form-check-input');
+    const pricesFilter = document.querySelectorAll('.input_price');
+    const percentFilter = document.querySelectorAll('.percent_filter');
+    const query = document.querySelector("#query_search_hidden");
+
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let capacity = "";
+            let price = [];
+            let percent = [];
+            capacityFilter.forEach(element => {
+                if (element.checked) {
+                    capacity = element.value;
+                }
+            })
+            pricesFilter.forEach(element => {
+                if (+element.value) {
+                    price.push(+element.value);
+                }
+            })
+            percentFilter.forEach(element => {
+                if (+element.value) {
+                    percent.push(+element.value);
+                }
+            })
+            const params = `?query=${query.value}${capacity.trim() != "" ? `&capacity-filter=${capacity}` : ""}${price.length === 2 ? `&price=${price[0] + "and" + price[1]}` : ""}${percent.length == 2 ? `&percent=${percent[0] + "and" + percent[1]}` : ""}`;
+            console.log(params);
+            window.location.href = "/Home/Search" + params;
+
+        })
+    }
+
+    const formSeach = document.querySelector("#form_search_input");
+
+    if (formSeach) {
+        const input = formSeach.querySelector("input");
+
+        formSeach.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const origin = window.location.href.split("&");
+            window.location.href = window.location.href.replace(origin[0], `http://localhost:8080/Home/Search?query=${input.value}`);
+        })
+    }
+
+</script>

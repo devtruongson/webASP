@@ -1,21 +1,21 @@
-.form-contact{
+.form-contact {
     width: 100%;
     min-height: 100px;
 
-    .overlay{
+    .overlay {
         width: 100%;
         height: 300px;
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: #ccc;
-        background-image: url("https://motogo.vn/wp-content/themes/motogo/images/map.svg") ;
+        background-image: url("https://motogo.vn/wp-content/themes/motogo/images/map.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
 
-        .form-header{
-            h1{
+        .form-header {
+            h1 {
                 font-weight: 700;
                 text-align: center;
                 text-transform: uppercase;
@@ -32,81 +32,103 @@
         }
     }
 
-    
 
-    .form-content{
+
+    .form-content {
         margin-top: 350px;
-        padding: 0 50px ;
+        padding: 0 50px;
         display: flex;
         justify-content: center;
 
-        .control-contact{
-            h3{
+        .control-contact {
+            h3 {
                 margin-bottom: 40px;
             }
-            .form-input{
+
+            .form-input {
                 margin-top: 20px;
-                label{
+
+                label {
                     font-weight: 500;
                     margin-bottom: 10px;
                 }
-    
-                input , textarea {
+
+                input,
+                textarea {
                     width: 100%;
                     padding: 10px;
                     border: 1px solid #ddd;
                     border-radius: 10px;
-                    
+
                 }
             }
 
-            .btn-sent{
+            .btn-sent {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 margin-top: 20px;
                 width: 100%;
+            }
+
+            .btn-sent button {
+                width: 100%;
                 height: 40px;
-                padding: 8px;
+                padding: 8px 16px;
                 border-radius: 10px;
                 border: none;
                 color: #fff;
                 background-color: #ffc80b;
-                transition: background-color 0.3s ease;
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: background-color 0.3s ease, opacity 0.3s ease;
+            }
 
-                p{
-                    text-align: center;
-                   
-                }
+            .btn-sent button i {
+                margin-left: 8px;
+            }
 
+            .btn-sent button:hover {
+                cursor: pointer;
+                background-color: #ff9900;
+                opacity: 0.8;
+            }
 
-                &:hover{
-                    cursor: pointer;
-                    background-color: blue;
-                    opacity: 0.6;
-                }
+            .btn-sent button:active {
+                background-color: #cc7a00;
+                opacity: 1;
             }
         }
 
 
-        .info-contact{
+        .info-contact {
             padding: 0 40px;
-            h3{
+
+            h3 {
                 margin-bottom: 40px;
             }
 
-            p{
+            p {
                 margin: 10px 0 !important;
-                span{
+
+                span {
                     color: blue;
                 }
             }
 
-            h5{
+            h5 {
                 margin: 30px 0;
             }
 
-            ul{
-                li{
+            ul {
+                li {
                     margin: 10px 0;
-                    a{
+
+                    a {
                         color: blue;
                     }
                 }
