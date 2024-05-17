@@ -82,8 +82,9 @@ public class HomeController : Controller
                 string? thumbnail = reader["thumbnail"].ToString();
                 string? price = reader["price"].ToString();
                 string? location = reader["content_title"].ToString();
+                string? percentNew = reader["precent_new"].ToString();
 
-                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, location);
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, location, percentNew);
                 data.Add(product);
             }
             this.connection.Close();

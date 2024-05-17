@@ -35,6 +35,12 @@
         return valueStart.ToString() + "and" + valueEnd.ToString();
     }
 
+    string formatVnd(string value)
+    {
+        var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+        return String.Format(info, "{0:c}", Double.Parse(value));
+    }
+
     ViewData["Title"] = "Tìm kiếm xe với từ khóa " + query;
 }
 
@@ -131,11 +137,18 @@
                                 <div class="render-car-bike--item col-6 mt-3">
                                     <a href="/product/ProductDetail?id=@item.id&name=@item.model" class="shadow-sm">
                                         <img src="/assets/imgs/@item.thumbnail" alt="">
-                                        <div>
+                                        <div style="flex: 1;">
                                             <h5>@item.model</h5>
-                                            <p class="m-0">@item.brand</p>
-                                            <p>@item.capacity Phân Khối</p>
-                                            <p>@item.location Phân Khối</p>
+                                            <p class="m-0 p-0 mb-1 mt-2"
+                                                style="display: flex;align-items:center; justify-content: space-between;">
+                                                <span>@item.brand</span>
+                                                <span>@item.capacity Phân Khối</span>
+                                            </p>
+                                            <p class="p-0 m-0"
+                                                style="display: flex;align-items:center; justify-content: space-between;">
+                                                <span>@formatVnd(item.price) / ngày</span>
+                                                <span>@item.location</span>
+                                            </p>
                                         </div>
                                     </a>
                                 </div>
