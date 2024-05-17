@@ -16,8 +16,6 @@ public class AboutController : Controller
         _logger = logger;
         ConnectionService cnService = new ConnectionService();
         this.connection = cnService.cn;
-
-
     }
 
     public IActionResult Index()

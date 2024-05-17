@@ -1,9 +1,11 @@
 .bg-cate-cars{
     background-color: #495057;
     width: 100%;
-    min-height: 1000px;
+    /* height: 1000px; */
     
     .form-cate-cars {
+        height: 1000px;
+        width: 100%;
         position: relative;
 
         .form-logo{
@@ -18,11 +20,10 @@
             img{
                 width: 100%;
                 opacity: 0.1;
-                margin-top: 30px;
-
-
+                margin-top: 30px;   
             }
         }
+
         .form-content{
             position: absolute;
             z-index: 2;
