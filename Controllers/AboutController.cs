@@ -70,7 +70,34 @@ public class AboutController : Controller
 
     public IActionResult Contact()
     {
-        return View();
+        return View("~/Views/About/Contact.cshtml");
+    }
+
+    [HttpPost]
+    public IActionResult HandleDataFormContact(string Name, string Email, string Title, string Description)
+    {
+        if (this.connection != null)
+        {
+            try
+            {
+                this.connection.Open();
+                string query = "insert into Contact (Name, Email, Description, Title) values ('" + Name + "', '" + Email + "', '" + Description + "', '" + Title + "')";
+
+                SqlCommand command = new SqlCommand(query, this.connection);
+                command.ExecuteNonQuery();
+                this.connection.Close();
+            }
+            catch (System.Exception err)
+            {
+                Console.WriteLine("Error " + err);
+            }
+        }
+        return RedirectToAction("ContactForm", "About", new { isContactDone = true });
+    }
+
+    public IActionResult ContactForm()
+    {
+        return View("~/Views/About/Contact.cshtml");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
