@@ -1,33 +1,92 @@
 .form-login{
     width: 100vw;
     height: 100vh;
+    background-color: #fff5d7;
+    padding-top: 100px;
 
     .form-control{
         width: 25%;
-        height: 70%;
+        height: 80%;
         margin-left: 50%;
         transform: translateX(-50%);
-        margin-top: 100px;
         border: 1px solid #ccc;
         padding: 20px 40px 0;
         border-radius: 10px;
+        background-color: #fea49f;
 
         h4{
             font-weight: 600;
             text-align: center;
+            color: #fff;
         }
 
         .form-input{
             margin-top: 20px;
             label{
+                color: #fff;
                 margin-bottom: 10px;
+
+                i{
+                    margin-right: 10px;
+                }
             }
 
             input{
-                padding: 4px 8px;
+                padding:  8px;
+            width: 100%;
+               border: none;
+               border-radius: 10px;
+
+                &:focus{
+                    border: none !important;
+                }
+            }
+        }
+
+        .form-forget{
+            margin-top: 20px;
+            display: flex;
+            justify-content: end;
+
+            p{
+                color: #fff;
+            }
+
+        }
+
+        
+
+        button{
+            margin-top: 20px;
+            width: 60%;
+            border-radius: 100px;
+            padding: 4px 8px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            border: none;
+            color: #fff;
+            background-color: #51d0de;
+
+            &:hover{
+                cursor: pointer;
+                opacity: 0.6;
+            }
+
+           
+        }
+
+        .form-logo{
+            margin-top: 20px;
+            width: 176px;
+            height: 45px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            overflow: hidden;
+
+            img{
                 width: 100%;
-                border: none;
-                border-bottom: 1px solid #ccc;
+                height: 100%;
             }
         }
     }

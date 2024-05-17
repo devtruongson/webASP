@@ -1,9 +1,12 @@
+.main{
+    width: 100%;
+}
+
 .service {
     background-color: #ebeced;
     width: 100%;
-    margin-top: 65px;
+    /* margin-top: 65px; */
     padding: 50px 0;
-    /* height: 500px; */
 }
 
 .row-serviece {
@@ -51,6 +54,7 @@
 
 .car-rental-procedures {
     margin: 50px 0;
+    /* background-color: #fff; */
 
     .procedure {
         width: 100%;
@@ -63,7 +67,7 @@
 
         h3 {
             font-weight: bold;
-            color: #000;
+            color: #fff;
             padding: 0;
             margin: 0;
         }
@@ -88,6 +92,10 @@
         display: flex;
         .col-md-4 {
             .inner {
+
+                p{
+                    color: #fff;
+                }
                 .heading-title {
                     font-size: 15px;
                     font-weight: 700;
@@ -100,10 +108,15 @@
                     li {
                         display: flex;
 
+                        i{
+                            color: #fff;
+                        }
+
                         p {
                             font-size: 14px;
                             padding-left: 10px;
                             margin: 2px 0 10px 0;
+                            color: #fff;
                         }
                     }
                 }

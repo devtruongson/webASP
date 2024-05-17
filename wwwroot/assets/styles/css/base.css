@@ -3,6 +3,10 @@ a {
   color          : currentColor;
 }
 
+body {
+  background-color: #f5f5f5;
+}
+
 .overlay {
   position        : absolute;
   top             : 0;
@@ -20,21 +24,25 @@ a {
   margin-top: 60px;
 }
 
-.render-car-bike .render-car-bike--item {
-  padding   : 6px 10px;
-  border-top: 1px solid #ccc;
-  border    : 1px solid #ccc;
-}
+.render-car-bike .render-car-bike--item {}
 
-.render-car-bike .render-car-bike--item:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
+.render-car-bike .render-car-bike--item:hover {}
 
 .render-car-bike .render-car-bike--item a {
-  display    : flex;
-  align-items: center;
-  gap        : 10px;
-  height     : 100%;
+  background   : #fff;
+  display      : flex;
+  align-items  : center;
+  gap          : 10px;
+  height       : 100%;
+  padding      : 6px 10px;
+  border-top   : 1px solid #ccc;
+  border       : 1px solid #ccc;
+  border-radius: 6px;
+
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
 }
 
 .render-car-bike .render-car-bike--item a img {

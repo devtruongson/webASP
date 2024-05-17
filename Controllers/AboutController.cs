@@ -16,8 +16,6 @@ public class AboutController : Controller
         _logger = logger;
         ConnectionService cnService = new ConnectionService();
         this.connection = cnService.cn;
-
-
     }
 
     public IActionResult Index()
@@ -48,20 +46,20 @@ public class AboutController : Controller
         if (this.connection != null)
         {
             this.connection.Open();
-            string query = "select * from Products";
+            string query = "select * from Products left join [All-code] on [All-code].id = Products.location_id";
             SqlCommand command = new SqlCommand(query, this.connection);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
                 int id = Convert.ToInt32(reader["Id"]);
-                string model = reader["model"].ToString();
-                string brand = reader["brand"].ToString();
-                string capacity = reader["capacity"].ToString();
-                string thumbnail = reader["thumbnail"].ToString();
-                string price = reader["price"].ToString();
+                string? model = reader["model"].ToString();
+                string? brand = reader["brand"].ToString();
+                string? capacity = reader["capacity"].ToString();
+                string? thumbnail = reader["thumbnail"].ToString();
+                string? price = reader["price"].ToString();
+                string? location = reader["content_title"].ToString();
 
-
-                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, "location");
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, location);
                 data.Add(product);
             }
             ViewBag.Data = data;
