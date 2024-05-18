@@ -103,36 +103,6 @@
 
 
         }
-
-        .justify-content-center {
-            -ms-flex-pack: center !important;
-            justify-content: center !important;
-        }
-
-        .pagination {
-            display: -ms-flexbox;
-            display: flex;
-            padding-left: 0;
-            list-style: none;
-            border-radius: .25rem;
-            margin: 0 auto 15px;
-        }
-
-        .pagination a,
-        .pagination span {
-            position: relative;
-            display: block;
-            padding: .5rem .75rem;
-            margin-left: -1px;
-            line-height: 1.25;
-            color: #ffc80b;
-            background-color: #fff;
-            border: 1px solid #dee2e6;
-        }
-
-        .pagination span {
-            color: #333;
-        }
     }
 
 }
