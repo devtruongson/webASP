@@ -4,7 +4,7 @@
             <div class="col-2">
                 <div class="sibar">
                     <div class="sibar-control">
-                        <button id="btn-info-admin" class="active">Quản Lí Thông tin</button>
+                        <button id="btn-info-admin" data-render="manage-admin" class="active">Quản Lí Thông tin</button>
                     </div>
                     <div class="sibar-control">
                         <button id="btn-price">Quản Lí Price</button>
@@ -12,14 +12,14 @@
                 </div>
             </div>
 
-            <div class="col-10 min-vh-100">
+            <div class="col-10 min-vh-100" id="">
                 <div class="form-info-admin form-content">
-                    <partial name="~/Views/System/InfoAdmin.cshtml" />
+                    @* <partial name="~/Views/System/InfoAdmin.cshtml" /> *@
                 </div>
 
-                <div class="form-price form-content display-none">
-                    <partial name="~/Views/System/PriceCars.cshtml" />
-                </div>
+                @* <div class="form-price form-content display-none">
+                <partial name="~/Views/System/PriceCars.cshtml" />
+                </div> *@
             </div>
         </div>
     </div>
@@ -32,51 +32,75 @@
         window.location.href = "http://localhost:8080/System";
     }
 
-    const sibInfoAdmin = document.querySelector("#btn-info-admin");
-    const sibPrice = document.querySelector("#btn-price");
+    const arrRender = [{
+        renderKey: "manage-admin",
+        elementRender: `<partial name="~/Views/System/InfoAdmin.cshtml" />`
+    }]
 
-    const handleRemoveActive = () => {
+    const btnElements = document.querySelectorAll("button[data-render]");
+
+    const renderContent = document.querySelector(".form-content");
+
+    btnElements.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const dataActive = e.target.dataset.render;
+            const dataRender = arrRender.find(item => item.renderKey === dataActive);
+            if (dataRender && renderContent) {
+                renderContent.innerHTML = dataRender.elementRender;
+            }
+        })
+    })
+
+
+
+
+    @* const sibInfoAdmin = document.querySelector("#btn-info-admin");
+        const sibPrice = document.querySelector("#btn-price");
+
+        const handleRemoveActive = () => {
 
         const listButton = document.querySelectorAll(".sibar button");
 
         listButton.forEach(button => {
-            button.classList.remove("active");
+        button.classList.remove("active");
         });
-    }
+        }
 
-    const handleAddDisplayNone = () => {
+        const handleAddDisplayNone = () => {
         const listContents = document.querySelectorAll(".form-content");
         listContents.forEach(div => {
-            div.classList.add("display-none")
+        div.classList.add("display-none")
         })
 
-    }
+        } *@
 
     @* info admin *@
-
+    @*
         sibInfoAdmin.addEventListener("click", function () {
 
-            const content = document.querySelector(".form-info-admin")
+        const content = document.querySelector(".form-info-admin")
 
-            handleRemoveActive();
-            handleAddDisplayNone();
+        handleRemoveActive();
+        handleAddDisplayNone();
 
-            content.classList.remove("display-none")
-            sibInfoAdmin.classList.add("active");
-        });
+        content.classList.remove("display-none")
+        sibInfoAdmin.classList.add("active");
+        }); *@
 
     @* price *@
 
-        sibPrice.addEventListener("click", function () {
+    @* sibPrice.addEventListener("click", function () {
 
-            const content = document.querySelector(".form-price ")
+        const content = document.querySelector(".form-price ")
 
-            handleRemoveActive();
-            handleAddDisplayNone();
+        handleRemoveActive();
+        handleAddDisplayNone();
 
-            content.classList.remove("display-none")
-            sibPrice.classList.add("active");
-        });
+        content.classList.remove("display-none")
+        sibPrice.classList.add("active");
+        }); *@
+
+
 
 
 </script>
