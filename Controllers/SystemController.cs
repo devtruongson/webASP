@@ -43,4 +43,11 @@ public class SystemController : Controller
     {
         return View("~/Views/System/Dashboard.cshtml");
     }
+
+    [HttpGet]
+    public IActionResult InfoAdmin()
+    {
+        string queryString = Request.Query["query"].ToString();
+        return PartialView(queryString);
+    }
 }

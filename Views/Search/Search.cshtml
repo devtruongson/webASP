@@ -6,7 +6,8 @@
     var startPrice = ViewBag.startPrice as string;
     var endPrice = ViewBag.endPrice as string;
     var percent = ViewBag.percent as string;
-    var startPercent = ViewBag.startPercent as string;
+    var
+    startPercent = ViewBag.startPercent as string;
     var endPercent = ViewBag.endPercent as string;
 
     bool checkFilterCapacity(string filter)
@@ -87,12 +88,19 @@
                                 <label style="user-select: none;" class="form-check-label" for="capacity-120-150cc">Xe Từ
                                     120cc - 150cc</label>
                             </div>
-                            <div class="form-check">
-                                <input type="radio" checked="@checkFilterCapacity("150and1000")" checke="false"
-                                    name="capacity-filter" value="150and1000" class="form-check-input"
+                            <div class="form-check mb-3">
+                                <input type="radio" checked="@checkFilterCapacity("150and250")" checke="false"
+                                    name="capacity-filter" value="150and250" class="form-check-input"
                                     id="capacity-150-anycc">
                                 <label style="user-select: none;" class="form-check-label" for="capacity-150-anycc">Xe Từ
                                     150cc</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input type="radio" checked="@checkFilterCapacity("250and1000")" checke="false"
+                                    name="capacity-filter" value="250and1000" class="form-check-input"
+                                    id="capacity-250-anycc">
+                                <label style="user-select: none;" class="form-check-label" for="capacity-250-anycc">Xe Từ
+                                    250cc</label>
                             </div>
                             <hr />
                             <div>

@@ -4,22 +4,16 @@
             <div class="col-2">
                 <div class="sibar">
                     <div class="sibar-control">
-                        <button id="btn-info-admin" data-render="manage-admin" class="active">Quản Lí Thông tin</button>
+                        <button id="btn-info-admin" data-render="manage-admin" class="">Quản Lí Thông tin</button>
                     </div>
                     <div class="sibar-control">
-                        <button id="btn-price">Quản Lí Price</button>
+                        <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
                     </div>
                 </div>
             </div>
 
             <div class="col-10 min-vh-100" id="">
-                <div class="form-info-admin form-content">
-                    @* <partial name="~/Views/System/InfoAdmin.cshtml" /> *@
-                </div>
-
-                @* <div class="form-price form-content display-none">
-                <partial name="~/Views/System/PriceCars.cshtml" />
-                </div> *@
+                <div class="form-info-admin form-content"></div>
             </div>
         </div>
     </div>
@@ -32,13 +26,31 @@
         window.location.href = "http://localhost:8080/System";
     }
 
+
+
     const arrRender = [{
         renderKey: "manage-admin",
-        elementRender: `<partial name="~/Views/System/InfoAdmin.cshtml" />`
+        elementRender: `~/Views/System/InfoAdmin.cshtml`
+    }, {
+        renderKey: "manage-price",
+        elementRender: "~/Views/System/PriceCars.cshtml"
     }]
 
-    const btnElements = document.querySelectorAll("button[data-render]");
+    function loadPartial(query, callback) {
+        fetch(`/System/InfoAdmin?query=${query}`)
+            .then(async (res) => await res.text())
+            .then(res => {
+                callback(res)
+            })
+    }
 
+    function renderPartial(content) {
+        console.log(content);
+        renderContent.innerHTML = content;
+    }
+
+    loadPartial("~/Views/System/InfoAdmin.cshtml", renderPartial)
+    const btnElements = document.querySelectorAll("button[data-render]");
     const renderContent = document.querySelector(".form-content");
 
     btnElements.forEach((btn) => {
@@ -46,7 +58,13 @@
             const dataActive = e.target.dataset.render;
             const dataRender = arrRender.find(item => item.renderKey === dataActive);
             if (dataRender && renderContent) {
-                renderContent.innerHTML = dataRender.elementRender;
+                loadPartial(dataRender.elementRender, renderPartial);
+            }
+            btnElements.forEach((btnChild) => {
+                btnChild.classList.remove("active");
+            })
+            if (dataRender) {
+                btn.classList.add("active");
             }
         })
     })

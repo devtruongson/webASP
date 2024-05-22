@@ -133,8 +133,8 @@ public class HomeController : Controller
         ViewBag.startPrice = startPrice;
         ViewBag.endPrice = endPrice;
 
-        ViewBag.startPercent = startPercent;
-        ViewBag.endPercent = endPercent;
+        ViewBag.startPercent = startPercent == "" ? "1" : startPrice;
+        ViewBag.endPercent = endPercent == "" ? "100" : endPercent;
         return View("~/Views/Search/Search.cshtml");
     }
 
