@@ -33,6 +33,11 @@ app.MapControllerRoute(
     defaults: new { controller = "Blog", action = "thuexemay" }
 );
 app.MapControllerRoute(
+    name: "travel",
+    pattern: "travel/*",
+    defaults: new { controller = "Travel", action = "blogdulich" }
+);
+app.MapControllerRoute(
    name: "product",
     pattern: "product/*",
     defaults: new { controller = "Product", action = "ProductDetail" }
