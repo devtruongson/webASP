@@ -9,6 +9,12 @@
                     <div class="sibar-control">
                         <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
                     </div>
+                    <div class="sibar-control">
+                        <button id="btn-price" data-render="rented-bike">Xem xe đã thuê</button>
+                    </div>
+                    <div class="sibar-control">
+                        <button id="btn-price" data-render="all-code-control">Quản lý dữ liệu chung</button>
+                    </div>
                 </div>
             </div>
 
@@ -32,6 +38,12 @@
     }, {
         renderKey: "manage-price",
         elementRender: "~/Views/System/PriceCars.cshtml"
+    }, {
+        renderKey: "rented-bike",
+        elementRender: "~/Views/System/Rented.cshtml"
+    }, {
+        renderKey: "all-code-control",
+        elementRender: "~/Views/System/ControlAllCode.cshtml"
     }]
 
     function loadPartial(query, callback) {

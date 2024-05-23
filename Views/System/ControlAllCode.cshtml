@@ -1,0 +1,56 @@
+<html lang="en">
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Quản lý dữ liệu chung</h1>
+
+        <form id="entryForm" class="mb-5">
+            <input type="hidden" id="id" name="id">
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <input type="text" class="form-control" id="type" name="type" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="content_title" class="form-label">Content Title</label>
+                <input type="text" class="form-control" id="content_title" name="content_title" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="content_detail" class="form-label">Content Detail</label>
+                <textarea class="form-control" id="content_detail" name="content_detail" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="code" class="form-label">Code</label>
+                <input type="text" class="form-control" id="code" name="code" required>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="addEntry()">Add</button>
+            <button type="button" class="btn btn-warning" onclick="updateEntry()">Update</button>
+            <button type="button" class="btn btn-danger" onclick="deleteEntry()">Delete</button>
+        </form>
+
+        <h2 class="text-center mb-4">Entries</h2>
+        <table class="table table-bordered" id="entriesTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Type</th>
+                    <th>Content Title</th>
+                    <th>Content Detail</th>
+                    <th>Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Entries will be populated here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="script.js"></script>
+</body>
+
+</html>
