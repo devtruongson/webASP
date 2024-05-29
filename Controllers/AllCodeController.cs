@@ -54,7 +54,7 @@ public class ALLCodeController : Controller
         command.Parameters.Add(new SqlParameter("@Code", code));
 
         command.ExecuteNonQuery();
-        return RedirectToAction("Index", "AllCode");
+        return RedirectToAction("Dashboard", "System", new { active = "all-code-control" });
     }
     [HttpPost]
     public IActionResult UpdateData(int id, string type, string content_title, string content_detail, string code)
@@ -70,7 +70,7 @@ public class ALLCodeController : Controller
         Console.WriteLine(query);
 
         command.ExecuteNonQuery();
-        return RedirectToAction("Index", "AllCode");
+        return RedirectToAction("Dashboard", "System", new { active = "all-code-control" });
     }
     [HttpPost]
     public IActionResult DeleteData(int id)
@@ -80,7 +80,7 @@ public class ALLCodeController : Controller
         SqlCommand command = new SqlCommand(query, this.connection);
 
         command.ExecuteNonQuery();
-        return RedirectToAction("Index", "AllCode");
+        return RedirectToAction("Dashboard", "System", new { active = "all-code-control" });
     }
     public IActionResult Index()
     {
@@ -106,6 +106,6 @@ public class ALLCodeController : Controller
             this.connection.Close();
         }
         ViewBag.Data = allcode;
-        return View("~/Views/System/ControlAllCode.cshtml");
+        return PartialView("~/Views/System/ControlAllCode.cshtml");
     }
 }

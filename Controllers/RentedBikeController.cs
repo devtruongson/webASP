@@ -24,11 +24,11 @@ namespace webASP.Controllers
             {
                 this.connection.Open();
                 string query = @"
-                    SELECT o.id, o.time_order, o.expried_car, o.price_total, c.email, c.phonenumber, p.model, p.thumbnail
-                    FROM Orders o
-                    JOIN Customers c ON o.customer_id = c.id
-                    JOIN Products p ON o.product_id = p.id
-                    WHERE o.is_received = 1"; // Assuming only received orders should be displayed
+            SELECT o.id, o.time_order, o.expried_car, o.price_total, c.email, c.phonenumber, p.model, p.thumbnail
+            FROM Orders o
+            JOIN Customers c ON o.customer_id = c.id
+            JOIN Products p ON o.product_id = p.id
+            WHERE o.is_received = 1"; // Giả sử chỉ hiển thị các đơn hàng đã nhận
                 SqlCommand command = new SqlCommand(query, this.connection);
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -49,7 +49,8 @@ namespace webASP.Controllers
                 this.connection.Close();
             }
             ViewBag.RentedBikes = rentedBikes;
-            return View("~/Views/System/Rented.cshtml");
+            return PartialView("~/Views/System/Rented.cshtml");
         }
+
     }
 }
