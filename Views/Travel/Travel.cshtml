@@ -1,136 +1,47 @@
+<!-- Views/Blog/Blog.cshtml -->
+@model IEnumerable<webASP.dto.BlogDTO>
+
 <div class="page-blog">
     <div class="overlay-color">
         <div class="container page-header">
-            <h1>HOMESTAY</h1>
+            <h1>blog du lịch</h1>
             <div class="underlined-h1"></div>
             <p>
                 <span><i class="bi bi-house-door-fill"></i></span>
                 <span class="text-home">Trang chủ</span>
-                <span><i class="bi bi-chevron-double-right"></i> HOMESTAY</span>
+                <span><i class="bi bi-chevron-double-right"></i> Blog du lịch</span>
             </p>
         </div>
     </div>
     <div class="page-content-inner">
         <div class="container">
-            <div class="list-post-cat row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="inner post">
-                        <a href="" class="post-thumbnail">
-                            <img width="300" height="200"
-                                src="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg"
-                                class="attachment-medium size-medium wp-post-image lazyloaded" alt="" decoding="async"
-                                fetchpriority="high" sizes="(max-width: 300px) 100vw, 300px"
-                                srcset="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg 300w, https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9.jpg 768w"
-                                data-ll-status="loaded">
-                        </a>
-                        <h6 class="post-title">
-                            <a href="">Các Loại Xe Máy Phù Hợp Để Chạy Sự Kiện</a>
-                        </h6>
-                        <p class="post-excerpt">
-                            Với nhịp sống năng động như hiện nay, nghề chạy sự kiện đang ngày càng trở nên phổ biến.
-                            Những...
-                        </p>
-                    </div>
-                </div>
-                <div class=" col-md-4 col-sm-6">
-                    <div class="inner post">
-                        <a href="" class="post-thumbnail">
-                            <img width="300" height="200"
-                                src="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg"
-                                class="attachment-medium size-medium wp-post-image lazyloaded" alt="" decoding="async"
-                                fetchpriority="high" sizes="(max-width: 300px) 100vw, 300px"
-                                srcset="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg 300w, https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9.jpg 768w"
-                                data-ll-status="loaded">
-                        </a>
-                        <h6 class="post-title">
-                            <a href="">Các Loại Xe Máy Phù Hợp Để Chạy Sự Kiện</a>
-                        </h6>
-                        <p class="post-excerpt">
-                            Với nhịp sống năng động như hiện nay, nghề chạy sự kiện đang ngày càng trở nên phổ biến.
-                            Những...
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="inner post">
-                        <a href="" class="post-thumbnail">
-                            <img width="300" height="200"
-                                src="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg"
-                                class="attachment-medium size-medium wp-post-image lazyloaded" alt="" decoding="async"
-                                fetchpriority="high" sizes="(max-width: 300px) 100vw, 300px"
-                                srcset="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg 300w, https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9.jpg 768w"
-                                data-ll-status="loaded">
-                        </a>
-                        <h6 class="post-title">
-                            <a href="">Các Loại Xe Máy Phù Hợp Để Chạy Sự Kiện</a>
-                        </h6>
-                        <p class="post-excerpt">
-                            Với nhịp sống năng động như hiện nay, nghề chạy sự kiện đang ngày càng trở nên phổ biến.
-                            Những...
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="inner post">
-                        <a href="" class="post-thumbnail">
-                            <img width="300" height="200"
-                                src="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg"
-                                class="attachment-medium size-medium wp-post-image lazyloaded" alt="" decoding="async"
-                                fetchpriority="high" sizes="(max-width: 300px) 100vw, 300px"
-                                srcset="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg 300w, https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9.jpg 768w"
-                                data-ll-status="loaded">
-                        </a>
-                        <h6 class="post-title">
-                            <a href="">Các Loại Xe Máy Phù Hợp Để Chạy Sự Kiện</a>
-                        </h6>
-                        <p class="post-excerpt">
-                            Với nhịp sống năng động như hiện nay, nghề chạy sự kiện đang ngày càng trở nên phổ biến.
-                            Những...
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="inner post">
-                        <a href="" class="post-thumbnail">
-                            <img width="300" height="200"
-                                src="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg"
-                                class="attachment-medium size-medium wp-post-image lazyloaded" alt="" decoding="async"
-                                fetchpriority="high" sizes="(max-width: 300px) 100vw, 300px"
-                                srcset="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg 300w, https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9.jpg 768w"
-                                data-ll-status="loaded">
-                        </a>
-                        <h6 class="post-title">
-                            <a href="">Các Loại Xe Máy Phù Hợp Để Chạy Sự Kiện</a>
-                        </h6>
-                        <p class="post-excerpt">
-                            Với nhịp sống năng động như hiện nay, nghề chạy sự kiện đang ngày càng trở nên phổ biến.
-                            Những...
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="inner post">
-                        <a href="" class="post-thumbnail">
-                            <img width="300" height="200"
-                                src="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg"
-                                class="attachment-medium size-medium wp-post-image lazyloaded" alt="" decoding="async"
-                                fetchpriority="high" sizes="(max-width: 300px) 100vw, 300px"
-                                srcset="https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9-300x200.jpg 300w, https://motogo.vn/wp-content/uploads/2024/05/cac-loai-xe-may-phu-hop-chay-su-kien-9.jpg 768w"
-                                data-ll-status="loaded">
-                        </a>
-                        <h6 class="post-title">
-                            <a href="">Các Loại Xe Máy Phù Hợp Để Chạy Sự Kiện</a>
-                        </h6>
-                        <p class="post-excerpt">
-                            Với nhịp sống năng động như hiện nay, nghề chạy sự kiện đang ngày càng trở nên phổ biến.
-                            Những...
-                        </p>
-                    </div>
-                </div>
+            <div class="row">
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var blog in Model)
+                    {
+                        <div class="col-md-4 col-sm-6 mb-4">
+                            <div class="card h-100">
+                                <a href="@blog.content_HTML" class="post-thumbnail">
+                                    <img width="300" height="200" src="@blog.content_MarkDown" class="card-img-top" alt="">
+                                </a>
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <a href="@blog.content_HTML">@blog.title</a>
+                                    </h6>
+                                    <p class="card-text">
+                                        @blog.description
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p>No posts available.</p>
+                }
             </div>
-
         </div>
-
     </div>
-
 </div>

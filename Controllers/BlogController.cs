@@ -1,46 +1,56 @@
 using System.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc;
+using webASP.dto;
 
 namespace webASP.Controllers;
+
 public class BlogController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly SqlConnection? connection;
+    private readonly ILogger<BlogController> _logger;
+    private readonly SqlConnection? _connection;
 
-    public BlogController(ILogger<HomeController> logger)
+    public BlogController(ILogger<BlogController> logger)
     {
         _logger = logger;
         ConnectionService cnService = new ConnectionService();
-        this.connection = cnService.cn;
+        _connection = cnService.cn;
     }
-    public BlogDTO HandleGetData(string id)
+
+    public List<BlogDTO> HandleGetData()
     {
-        BlogDTO allcode = new BlogDTO();
-        if (this.connection != null)
+        List<BlogDTO> blogs = new List<BlogDTO>();
+
+        if (_connection != null)
         {
-            this.connection.Open();
-            string query = "select * from [ALL-code] where  id = " + id;
-            SqlCommand command = new SqlCommand(query, this.connection);
+            _connection.Open();
+            string query = "SELECT * FROM Blogs WHERE is_active = 1 and cate_id = 6"; // Assuming only active blogs should be displayed
+            SqlCommand command = new SqlCommand(query, _connection);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                int idBlog = Convert.ToInt32(reader["Id"]);
-                string? title = reader["title"].ToString();
-                string? description = reader["description"].ToString();
-                bool is_active = Convert.ToBoolean(reader["is_active"]);
-                string? content_MarkDown = reader["content_MarkDown"].ToString();
-                string? content_HTML = reader["content_HTML"].ToString();
-                int cate_id = Convert.ToInt32(reader["cate_id"]);
+                int id = reader["id"] != DBNull.Value ? Convert.ToInt32(reader["id"]) : 0;
+                string title = reader["title"] != DBNull.Value ? reader["title"].ToString() : string.Empty;
+                string description = reader["description"] != DBNull.Value ? reader["description"].ToString() : string.Empty;
+                bool isActive = reader["is_active"] != DBNull.Value && Convert.ToBoolean(reader["is_active"]);
+                string contentMarkdown = reader["content_MarkDown"] != DBNull.Value ? reader["content_MarkDown"].ToString() : string.Empty;
+                string contentHtml = reader["content_HTML"] != DBNull.Value ? reader["content_HTML"].ToString() : string.Empty;
+                int categoryId = reader["cate_id"] != DBNull.Value ? Convert.ToInt32(reader["cate_id"]) : 0;
 
-                allcode = new BlogDTO(idBlog, title, description, is_active, content_MarkDown, content_HTML, cate_id);
+                var blog = new BlogDTO(id, title, description, isActive, contentMarkdown, contentHtml, categoryId);
+                blogs.Add(blog);
             }
-            this.connection.Close();
+            _connection.Close();
+        }
+        else
+        {
+            _logger.LogError("Database connection is null.");
         }
 
-        return allcode;
+        return blogs;
     }
-    public IActionResult thuexemay()
+    public IActionResult ThueXeMay()
     {
-        return View("~/Views/Blog/Blog.cshtml");
+        var blogs = HandleGetData();
+        return View("~/Views/Blog/Blog.cshtml", blogs);
     }
 }

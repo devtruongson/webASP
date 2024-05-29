@@ -1,4 +1,4 @@
-
+namespace webASP.dto;
 public class BlogDTO
 {
     public readonly int id;
@@ -9,6 +9,12 @@ public class BlogDTO
     public readonly string? content_HTML;
     public readonly int cate_id;
     public BlogDTO() { }
+    public BlogDTO(int id, string title, string description)
+    {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
     public BlogDTO(int id, string title, string description, bool is_active, string content_MarkDown, string content_HTML, int cate_id)
     {
         this.id = id;
