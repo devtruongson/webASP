@@ -52,5 +52,9 @@ app.MapControllerRoute(
     pattern: "allcode/*",
     defaults: new { controller = "AllCode", action = "Index" }
 );
-
+app.MapControllerRoute(
+    name: "rentedbike",
+    pattern: "rentedbike/*",
+    defaults: new { controller = "RentedBike", action = "Index" }
+);
 app.Run();

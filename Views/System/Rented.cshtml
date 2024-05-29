@@ -1,6 +1,14 @@
+@{
+    var rentedBikes = ViewBag.RentedBikes as List<webASP.DTO.RentedBikeDTO>;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rented Bikes</title>
     <style>
         .card img {
             width: 150px;
@@ -12,58 +20,50 @@
             display: flex;
             align-items: center;
         }
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            /* Ensure each card is displayed in a new row */
+        }
+
+        .col-12 {
+            width: 100%;
+            /* Each column should take full width */
+            box-sizing: border-box;
+            padding: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="container my-4">
         <div class="row">
-
-            <div class="col-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://via.placeholder.com/150" class="card-img-left" alt="Hình ảnh xe 1">
-                        <div>
-                            <h5 class="card-title">Xe 1</h5>
-                            <p class="card-text">Mô tả ngắn về xe 1. Đây là xe hạng sang với đầy đủ tiện nghi.</p>
-                            <p class="card-text"><strong>Người thuê:</strong> Nguyễn Văn A</p>
-                            <p class="card-text"><small class="text-muted">Thuê từ: 01/01/2024</small></p>
-                            <p class="card-text"><small class="text-muted">Trả ngày: 05/01/2024</small></p>
+            @if (rentedBikes != null && rentedBikes.Any())
+            {
+                foreach (var bike in rentedBikes)
+                {
+                    <div class="col-12 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="/assets/imgs/@(bike.Thumbnail)" class="card-img-left" alt="Hình ảnh @(bike.Model)">
+                                <div>
+                                    <h5 class="card-title">Model: @(bike.Model)</h5>
+                                    <p class="card-text">Tổng tiền thuê: @(bike.PriceTotal) VND</p>
+                                    <p class="card-text"><strong>Người thuê:</strong> @(bike.CustomerEmail)</p>
+                                    <p class="card-text"><strong>Phone:</strong> @(bike.CustomerPhoneNumber)</p>
+                                    <p class="card-text"><small class="text-muted">Thuê từ: @(bike.TimeOrder)</small></p>
+                                    <p class="card-text"><small class="text-muted">Trả ngày: @(bike.ExpriedCar)</small></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://via.placeholder.com/150" class="card-img-left" alt="Hình ảnh xe 2">
-                        <div>
-                            <h5 class="card-title">Xe 2</h5>
-                            <p class="card-text">Mô tả ngắn về xe 2. Đây là xe gia đình phù hợp cho các chuyến du lịch
-                                dài ngày.</p>
-                            <p class="card-text"><strong>Người thuê:</strong> Trần Thị B</p>
-                            <p class="card-text"><small class="text-muted">Thuê từ: 03/01/2024</small></p>
-                            <p class="card-text"><small class="text-muted">Trả ngày: 10/01/2024</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="https://via.placeholder.com/150" class="card-img-left" alt="Hình ảnh xe 3">
-                        <div>
-                            <h5 class="card-title">Xe 3</h5>
-                            <p class="card-text">Mô tả ngắn về xe 3. Đây là xe thể thao mạnh mẽ, tốc độ cao.</p>
-                            <p class="card-text"><strong>Người thuê:</strong> Lê Văn C</p>
-                            <p class="card-text"><small class="text-muted">Thuê từ: 07/01/2024</small></p>
-                            <p class="card-text"><small class="text-muted">Trả ngày: 12/01/2024</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                }
+            }
+            else
+            {
+                <p>Không có xe nào được thuê.</p>
+            }
         </div>
     </div>
 </body>
