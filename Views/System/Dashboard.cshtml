@@ -18,9 +18,10 @@
                 <div class="sibar">
                     <div class="sibar-control">
                         <button id="btn-info-admin" data-render="manage-admin" class="active">Quản Lí Thông tin</button>
+                        <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
                     </div>
                     <div class="sibar-control">
-                        <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
+                        <button id="btn-price" data-render="manage-blogs">Quản Lí Bài Viết</button>
                     </div>
                     <div class="sibar-control">
                         <button id="btn-rented-bike" data-render="rented-bike">Xem xe đã thuê</button>
@@ -30,7 +31,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-10 min-vh-100" id="">
                 <div class="form-info-admin form-content">
                 </div>
@@ -99,7 +99,6 @@
     </div>
 
 </div>
-
 
 <script>
     const formInfo = document.querySelector(".form-info-admin");
@@ -176,16 +175,34 @@
 
     function loadPartial(query, callback) {
 
+    },
+    {
+        renderKey: "manage-blogs",
+        elementRender: "~/Views/System/blog.cshtml",
+        urlScript: "/assets/js/blog.js",
+        class: "script-blog",
+        type: "blog"
     }, {
         renderKey: "all-code-control",
         elementRender: `/AllCode`
     }]
-    function loadPartial(viewUrl, callback) {
-        fetch(viewUrl)
+    function loadPartial(viewUrl, callback, type = "load") {
+
+        if(type === "load") {
+             fetch(viewUrl)
             .then(async (res) => await res.text())
             .then(res => {
                 callback(res);
             });
+        }else{
+             fetch(`/System/InfoAdmin?query=${viewUrl}`)
+            .then(async (res) => await res.text())
+            .then(res => {
+                callback(res)
+            })
+        }
+
+
     }
 
     function renderPartial(content) {
@@ -200,13 +217,29 @@
             const dataActive = e.target.dataset.render;
             const dataRender = arrRender.find(item => item.renderKey === dataActive);
             if (dataRender && renderContent) {
-                loadPartial(dataRender.elementRender, renderPartial);
+                if(dataRender.type) {
+                    loadPartial(dataRender.elementRender, renderPartial, dataRender.type);
+                }else{
+                     loadPartial(dataRender.elementRender, renderPartial);
+                }
             }
             btnElements.forEach((btnChild) => {
                 btnChild.classList.remove("active");
             });
             if (dataRender) {
                 btn.classList.add("active");
+            }
+            if (dataRender && renderContent) {
+                loadPartial(dataRender.elementRender, renderPartial);
+                if (dataRender.urlScript) {
+                    const scriptElement = document.createElement("script");
+                    scriptElement.classList.add(dataRender.class);
+                    scriptElement.src = dataRender.urlScript;
+                    scriptElement.setAttribute("defer", "");
+                    scriptElement.setAttribute("type", "text/javascript");
+                    document.body.appendChild(scriptElement);
+                }
+
             }
         });
     });
@@ -256,15 +289,25 @@
         btn.addEventListener("click", (e) => {
             const dataActive = e.target.dataset.render;
             const dataRender = arrRender.find(item => item.renderKey === dataActive);
-            if (dataRender && renderContent) {
-                loadPartial(dataRender.elementRender, renderPartial);
-            }
             btnElements.forEach((btnChild) => {
                 btnChild.classList.remove("active");
             })
             if (dataRender) {
                 btn.classList.add("active");
             }
+            if (dataRender && renderContent) {
+                loadPartial(dataRender.elementRender, renderPartial);
+                if (dataRender.urlScript) {
+                    const scriptElement = document.createElement("script");
+                    scriptElement.classList.add(dataRender.class);
+                    scriptElement.src = dataRender.urlScript;
+                    scriptElement.setAttribute("defer", "");
+                    scriptElement.setAttribute("type", "text/javascript");
+                    document.body.appendChild(scriptElement);
+                }
+
+            }
+
         })
     }) 
 

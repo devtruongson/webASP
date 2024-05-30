@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using webASP.Models;
 using System.Diagnostics;
 
+using webASP.dto;
 
 
 namespace webASP.Controllers;
@@ -36,6 +37,92 @@ public class SystemController : Controller
             }
         }
         return RedirectToAction("Index", "System", new { email = email, password = password });
+    }
+
+    [HttpPost]
+    public IActionResult HandleCreateBlog(string title, string content_MarkDown, string content_HTML, string cate_id, string description)
+    {
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "INSERT INTO Blogs (title, description, is_active, content_MarkDown, content_HTML, cate_id) VALUES (@title, @description,@is_active, @content_MarkDown, @content_HTML, @cate_id)";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            command.Parameters.AddWithValue("@title", title);
+            command.Parameters.AddWithValue("@description", description);
+            command.Parameters.AddWithValue("@content_MarkDown", content_MarkDown);
+            command.Parameters.AddWithValue("@content_HTML", content_HTML);
+            command.Parameters.AddWithValue("@cate_id", cate_id);
+            command.Parameters.AddWithValue("@is_active", true);
+
+            int result = command.ExecuteNonQuery();
+            if (result > 0)
+            {
+                // Insert succeeded
+                return RedirectToAction("Index", "System");
+            }
+        }
+        return RedirectToAction("Index", "System");
+    }
+
+    [HttpPost]
+    public IActionResult DeleteBlog(string id)
+    {
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "delete from Blogs where id = @id";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            command.Parameters.AddWithValue("@id", id);
+            int result = command.ExecuteNonQuery();
+            if (result > 0)
+            {
+                return RedirectToAction("Index", "System");
+            }
+        }
+        return RedirectToAction("Index", "System");
+    }
+
+    [HttpGet]
+    public IActionResult GetAllBlog()
+    {
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "SELECT * FROM Blogs";
+            SqlCommand command = new SqlCommand(query, this.connection);
+
+            SqlDataReader reader = command.ExecuteReader();
+            var blogs = new List<BlogDTOGet>();
+
+            while (reader.Read())
+            {
+                string title = reader["title"].ToString();
+                string description = reader["description"].ToString();
+                string ContentMarkdown = reader["content_MarkDown"].ToString();
+                string ContentHtml = reader["content_HTML"].ToString();
+                int CateId = reader.GetInt32(reader.GetOrdinal("cate_id"));
+                int id = reader.GetInt32(reader.GetOrdinal("id"));
+
+                var blog = new BlogDTOGet
+                {
+                    Id = id,
+                    Title = title,
+                    Description = description,
+                    ContentMarkdown = ContentMarkdown,
+                    ContentHtml = ContentHtml,
+                    CateId = CateId,
+                };
+
+                blogs.Add(blog);
+            }
+
+            reader.Close();
+            this.connection.Close();
+
+            return Json(blogs);
+        }
+
+        return StatusCode(500, "Database connection is null.");
     }
 
     public IActionResult Index()
