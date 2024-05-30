@@ -11,6 +11,80 @@ public class HomeController : Controller
     private readonly ILogger<HomeController> _logger;
     private readonly SqlConnection? connection;
 
+
+    [HttpPost]
+    public IActionResult SubmitBookingForm(string LocationId, DateTime FirstReceived, DateTime DateReturnCar, int CustomerId, string PhoneNumber)
+    {
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string queryCheckUser = "SELECT * FROM Customers WHERE id = @CustomerId";
+            bool isValid = true;
+            SqlCommand commandCheck = new SqlCommand(queryCheckUser, this.connection);
+            commandCheck.Parameters.AddWithValue("@CustomerId", CustomerId);
+            SqlDataReader readerCheck = commandCheck.ExecuteReader();
+            if (!readerCheck.Read())
+            {
+                isValid = false;
+                readerCheck.Close();
+                string queryAddUser = "INSERT INTO Customers (id, phonenumber) VALUES (@id, @phonenumber)";
+                SqlCommand commandInsert = new SqlCommand(queryAddUser, this.connection);
+                commandInsert.Parameters.AddWithValue("@id", CustomerId);
+                commandInsert.Parameters.AddWithValue("@phonenumber", PhoneNumber);
+                commandInsert.ExecuteNonQuery();
+            }
+            else
+            {
+                readerCheck.Close();
+            }
+
+            string query = "INSERT INTO booking_form (location_id, first_received, date_return_car, customer_id) VALUES (@LocationId, @FirstReceived, @DateReturnCar, @CustomerId)";
+            SqlCommand command = new SqlCommand(query, this.connection);
+
+            command.Parameters.AddWithValue("@LocationId", LocationId ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@FirstReceived", FirstReceived);
+            command.Parameters.AddWithValue("@DateReturnCar", DateReturnCar);
+            command.Parameters.AddWithValue("@CustomerId", CustomerId);
+
+            command.ExecuteNonQuery();
+            this.connection.Close();
+        }
+
+        return Json(new { success = true, message = "Đã nhận thông tin!" });
+    }
+
+
+
+
+    public IActionResult Index()
+    {
+        List<ALlcodeDTO> data = new List<ALlcodeDTO>();
+
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "select * from [All-code] where type = 'LOCATION';";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["id"]);
+                string? type = reader["type"].ToString();
+                string? contentTitle = reader["content_title"].ToString();
+                string? contentDetail = reader["content_detail"].ToString();
+                string? code = reader["code"].ToString();
+
+                ALlcodeDTO Allcode = new ALlcodeDTO(id, type, contentTitle, contentDetail, code);
+                data.Add(Allcode);
+            }
+            this.connection.Close();
+        }
+        ViewBag.location = data;
+
+
+        return View();
+    }
+
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
