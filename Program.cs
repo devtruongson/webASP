@@ -47,5 +47,10 @@ app.MapControllerRoute(
     pattern: "system/*",
     defaults: new { controller = "System", action = "Index" }
 );
+app.MapControllerRoute(
+    name: "allcode",
+    pattern: "allcode/*",
+    defaults: new { controller = "AllCode", action = "Index" }
+);
 
 app.Run();
