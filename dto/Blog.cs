@@ -26,4 +26,13 @@ public class BlogDTO
         this.cate_id = cate_id;
     }
 
+    public BlogDTO(string title, string description, string content_MarkDown, string content_HTML, int cate_id)
+    {
+        this.title = title;
+        this.description = description;
+        this.content_MarkDown = content_MarkDown;
+        this.content_HTML = content_HTML;
+        this.cate_id = cate_id;
+    }
+
 }
