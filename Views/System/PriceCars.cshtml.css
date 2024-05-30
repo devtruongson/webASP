@@ -1,0 +1,41 @@
+.main{
+    width: 100%;
+    /* height: 500px; */
+
+    table{
+        width: 80%;
+        height: 100%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border: 1px solid #ccc;
+        margin-top: 100px;
+
+        thead{
+            tr{
+                td{
+                    padding: 10px;
+                    background-color: #fcb900;
+                    color: #fff;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    padding: 10px;
+                    border:1px solid #ccc;
+
+                    button{
+                        padding: 8px;
+                        border-radius: 10px;
+                        background-color: #ffc107;
+                        border: none;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+       
+    }
+}

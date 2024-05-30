@@ -1,1 +1,54 @@
-<div class="">Price</div>
+@{
+    var data = ViewBag.Data as List<ProductDTO>;
+    var test = ViewBag.test as string;
+    @* Console.WriteLine(data); *@
+
+    double handlePrice(string price, double percent)
+    {
+        double newPrice = Convert.ToDouble(price);
+
+        return newPrice * percent;
+    }
+}
+
+@*
+<div class=" main">
+
+<p>aaa</p>
+
+@if (data != null)
+{
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>brand</th>
+<th>1-5 ngày</th>
+<th>6-10 ngày</th>
+<th>11-15 ngày</th>
+<th>16-20 ngày</th>
+<th>+20 ngày</th>
+</tr>
+</thead>
+<tbody>
+@foreach (var item in data)
+{
+<tr>
+<td>@item.model</td>
+<td>@item.brand</td>
+<td>@handlePrice(item.price, 1) VNĐ</td>
+<td>@handlePrice(item.price, 0.9) VNĐ</td>
+<td>@handlePrice(item.price, 0.8) VNĐ</td>
+<td>@handlePrice(item.price, 0.7) VNĐ</td>
+<td>@handlePrice(item.price, 0.65) VNĐ</td>
+</tr>
+}
+
+</tbody>
+</table>
+}
+else
+{
+<p>No data available</p>
+}
+</div> *@
