@@ -1,21 +1,58 @@
 <div>
-    <form>
+    <form id="form_blog">
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="title" class="form-label">title</label>
-                    <input class="form-control" id="title">
+                    <label for="title" class="form-label">Tên bài viết</label>
+                    <input name="title" class="form-control" id="title" placeholder="Nhap ten bai viet">
                 </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="title" class="form-label">title</label>
-                    <input class="form-control" id="title">
+                    <label for="content_MarkDown" class="form-label">Link Anh</label>
+                    <input name="content_MarkDown" class="form-control" id="content_MarkDown"
+                        placeholder="Nhap Link Anh">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="content_HTML" class="form-label">Tên bài viết</label>
+                    <input name="content_HTML" class="form-control" id="content_HTML" placeholder="Nhap Tên bài viết">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="mb-3">
+                    <label for="cate_id" class="form-label">ID Danh mục</label>
+                    <input type="number" name="cate_id" class="form-control" id="cate_id"
+                        placeholder="Nhap ID Danh mục">
                 </div>
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="mb-3">
+                    <label for="desc" class="form-label">Mô tả</label>
+                    <textarea name="description" class="form-control" id="desc"
+                        placeholder="Nhap mô tả bai viet"></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </div>
         </div>
     </form>
+    <div class="mt-5">
+        <h2>Thông tin bài viết</h2>
+        <table class="table">
+            <thead class=" table-dark">
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Mô tả</th>
+                    <th scope="col">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody class="tableRender-crud-blog">
+
+            </tbody>
+        </table>
+    </div>
 </div>

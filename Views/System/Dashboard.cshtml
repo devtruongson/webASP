@@ -10,6 +10,9 @@
                         <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
                     </div>
                     <div class="sibar-control">
+                        <button id="btn-price" data-render="manage-blogs">Quản Lí Bài Viết</button>
+                    </div>
+                    <div class="sibar-control">
                         <button id="btn-price" data-render="rented-bike">Xem xe đã thuê</button>
                     </div>
                     <div class="sibar-control">
@@ -17,7 +20,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-10 min-vh-100" id="">
                 <div class="form-info-admin form-content"></div>
             </div>
@@ -25,24 +27,34 @@
     </div>
 </div>
 
-
 <script>
     if (!JSON.parse(localStorage.getItem("isLoginIn"))) {
         alert("Bạn không có quyền!");
         window.location.href = "http://localhost:8080/System";
     }
-    const arrRender = [{
-        renderKey: "manage-admin",
-        elementRender: `~/Views/System/InfoAdmin.cshtml`
-    }, {
-        renderKey: "manage-price",
-        elementRender: "~/Views/System/PriceCars.cshtml"
-    }, {
-        renderKey: "manage-blogs",
-        elementRender: "~/Views/System/blog.cshtml",
-        urlScript: "/assets/js/blog.js",
-        class: "script-blog"
-    }]
+    const arrRender = [
+        {
+            renderKey: "manage-admin",
+            elementRender: `~/Views/System/InfoAdmin.cshtml`
+        },
+        {
+            renderKey: "manage-price",
+            elementRender: "~/Views/System/PriceCars.cshtml"
+        },
+        {
+            renderKey: "manage-blogs",
+            elementRender: "~/Views/System/blog.cshtml",
+            urlScript: "/assets/js/blog.js",
+            class: "script-blog",
+        }, {
+            renderKey: "rented-bike",
+            elementRender: "~/Views/System/Rented.cshtml"
+        },
+        {
+            renderKey: "all-code-control",
+            elementRender: "~/Views/System/ControlAllCode.cshtml"
+        }
+    ]
 
     function loadPartial(query, callback) {
         fetch(`/System/InfoAdmin?query=${query}`)
@@ -73,12 +85,11 @@
             if (dataRender && renderContent) {
                 loadPartial(dataRender.elementRender, renderPartial);
                 if (dataRender.urlScript) {
-                    const checkExit = document.querySelector(`.${dataRender.class}`);
-                    if (checkExit) return;
                     const scriptElement = document.createElement("script");
                     scriptElement.classList.add(dataRender.class);
                     scriptElement.src = dataRender.urlScript;
                     scriptElement.setAttribute("defer", "");
+                    scriptElement.setAttribute("type", "text/javascript");
                     document.body.appendChild(scriptElement);
                 }
 
@@ -86,7 +97,4 @@
 
         })
     })
-</script>
-<script type="text/babel">
-
 </script>
