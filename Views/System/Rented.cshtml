@@ -1,0 +1,53 @@
+@{
+    var rentedBikes = ViewBag.RentedBikes as List<webASP.DTO.RentedBikeDTO>;
+}
+
+<div class="container my-4">
+    <div class="row">
+        @if (rentedBikes != null && rentedBikes.Any())
+        {
+            foreach (var bike in rentedBikes)
+            {
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img src="/assets/imgs/@(bike.Thumbnail)" class="card-img-left" alt="Hình ảnh @(bike.Model)">
+                            <div>
+                                <h5 class="card-title">Model: @(bike.Model)</h5>
+                                <p class="card-text">Tổng tiền thuê: @(bike.PriceTotal) VND</p>
+                                <p class="card-text"><strong>Người thuê:</strong> @(bike.CustomerEmail)</p>
+                                <p class="card-text"><strong>Phone:</strong> @(bike.CustomerPhoneNumber)</p>
+                                <p class="card-text"><small class="text-muted">Thuê từ: @(bike.TimeOrder)</small></p>
+                                <p class="card-text"><small class="text-muted">Trả ngày: @(bike.ExpriedCar)</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>Không có xe nào được thuê.</p>
+        }
+    </div>
+</div>
+
+<style>
+    .card img {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        margin-right: 20px;
+    }
+
+    .card-body {
+        display: flex;
+        align-items: center;
+    }
+
+    .col-12 {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+    }
+</style>

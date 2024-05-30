@@ -22,6 +22,12 @@
                     <div class="sibar-control">
                         <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
                     </div>
+                    <div class="sibar-control">
+                        <button id="btn-rented-bike" data-render="rented-bike">Xem xe đã thuê</button>
+                    </div>
+                    <div class="sibar-control">
+                        <button id="btn-all-code-control" data-render="all-code-control">Quản lý dữ liệu chung</button>
+                    </div>
                 </div>
             </div>
 
@@ -164,10 +170,61 @@
     }, {
         renderKey: "manage-price",
         elementRender: "~/Views/System/PriceCars.cshtml"
-    }]
+    }, {
+        renderKey: "rented-bike",
+        elementRender: `/RentedBike`
 
     function loadPartial(query, callback) {
 
+    }, {
+        renderKey: "all-code-control",
+        elementRender: `/AllCode`
+    }]
+    function loadPartial(viewUrl, callback) {
+        fetch(viewUrl)
+            .then(async (res) => await res.text())
+            .then(res => {
+                callback(res);
+            });
+    }
+
+    function renderPartial(content) {
+        renderContent.innerHTML = content;
+    }
+
+    const btnElements = document.querySelectorAll("button[data-render]");
+    const renderContent = document.querySelector(".form-content");
+
+    btnElements.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const dataActive = e.target.dataset.render;
+            const dataRender = arrRender.find(item => item.renderKey === dataActive);
+            if (dataRender && renderContent) {
+                loadPartial(dataRender.elementRender, renderPartial);
+            }
+            btnElements.forEach((btnChild) => {
+                btnChild.classList.remove("active");
+            });
+            if (dataRender) {
+                btn.classList.add("active");
+            }
+        });
+    });
+    const keyactive = window.location.search.split("=")[1];
+    if (keyactive) {
+        const dataRender = arrRender.find(item => item.renderKey === keyactive);
+            if (dataRender && renderContent) {
+                loadPartial(dataRender.elementRender, renderPartial);
+            }
+            btnElements.forEach((btnChild) => {
+                btnChild.classList.remove("active");
+            });
+            if (dataRender) {
+                btn.classList.add("active");
+            }
+        }
+
+    @*function loadPartial(query, callback) {
         fetch(`/System/InfoAdmin?query=${query}`)
             .then(async (res) => await res.text())
             .then(res => {
@@ -209,7 +266,7 @@
                 btn.classList.add("active");
             }
         })
-    })
+    }) 
 
 
     //info
