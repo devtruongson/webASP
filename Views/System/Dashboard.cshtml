@@ -54,44 +54,44 @@
 
                     @if (data != null)
                     {
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Model</th>
-                                    <th>brand</th>
-                                    <th>1-5 ngày</th>
-                                    <th>6-10 ngày</th>
-                                    <th>11-15 ngày</th>
-                                    <th>16-20 ngày</th>
-                                    <th>+20 ngày</th>
-                                    <th>Hành động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Model</th>
+                                            <th>brand</th>
+                                            <th>1-5 ngày</th>
+                                            <th>6-10 ngày</th>
+                                            <th>11-15 ngày</th>
+                                            <th>16-20 ngày</th>
+                                            <th>+20 ngày</th>
+                                            <th>Hành động</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
                                 @foreach (var item in data)
                                 {
-                                    <tr>
-                                        <td>@item.model</td>
-                                        <td>@item.brand</td>
-                                        <td>@handlePrice(item.price, 1) VNĐ</td>
-                                        <td>@handlePrice(item.price, 0.9) VNĐ</td>
-                                        <td>@handlePrice(item.price, 0.8) VNĐ</td>
-                                        <td>@handlePrice(item.price, 0.7) VNĐ</td>
-                                        <td>@handlePrice(item.price, 0.65) VNĐ</td>
-                                        <td>
-                                            <input type="text" value="@item.model" hidden class="input-model">
-                                            <input type="text" value="@item.price" class="input-price" hidden>
-                                            <button class="button-update">Sửa</button>
-                                        </td>
-                                    </tr>
+                                                    <tr>
+                                                        <td>@item.model</td>
+                                                        <td>@item.brand</td>
+                                                        <td>@handlePrice(item.price, 1) VNĐ</td>
+                                                        <td>@handlePrice(item.price, 0.9) VNĐ</td>
+                                                        <td>@handlePrice(item.price, 0.8) VNĐ</td>
+                                                        <td>@handlePrice(item.price, 0.7) VNĐ</td>
+                                                        <td>@handlePrice(item.price, 0.65) VNĐ</td>
+                                                        <td>
+                                                            <input type="text" value="@item.model" hidden class="input-model">
+                                                            <input type="text" value="@item.price" class="input-price" hidden>
+                                                            <button class="button-update">Sửa</button>
+                                                        </td>
+                                                    </tr>
                                 }
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
                     }
                     else
                     {
-                        <p>No data available</p>
+                                <p>No data available</p>
                     }
                 </div>
             </div>
@@ -109,14 +109,7 @@
     const inputUpdate = document.querySelector(".input-update");
     const inputModel = document.querySelector(".input-model");
 
-    @* const url = window.location.href;
-
-        if (url.split("?")[1].split("=")[0] === "changePrice") {
-        if (url.split("=")[1] === "true") {
-        formInfo.classList.add("display-none");
-        formPrice.classList.remove("display-none")
-        }
-        } *@
+   
 
     const url = new URL(window.location.href);
 
@@ -173,9 +166,9 @@
         renderKey: "rented-bike",
         elementRender: `/RentedBike`
 
-    function loadPartial(query, callback) {
+    @* function loadPartial(query, callback) {
 
-    },
+    }, *@
     {
         renderKey: "manage-blogs",
         elementRender: "~/Views/System/blog.cshtml",
