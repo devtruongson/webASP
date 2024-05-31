@@ -37,7 +37,7 @@ public class ManagerBikeController : Controller
             string queryInfoUser = "select id from Customers where email like '%" + queryString + "%' or phonenumber = '%" + queryString + "%'";
             using (SqlCommand commandInfo = new SqlCommand(queryInfoUser, connection))
             {
-                using (SqlDataReader readerInfo = commandInfo.ExecuteReader()p)
+                using (SqlDataReader readerInfo = commandInfo.ExecuteReader())
                 {
                     if (readerInfo.HasRows)
                     {
@@ -60,13 +60,13 @@ public class ManagerBikeController : Controller
             while (reader.Read())
             {
                 int id = Convert.ToInt32(reader["id"]);
-                string timeOrder = reader["time_order"].ToString();
-                string expriedCar = reader["expried_car"].ToString();
-                string priceTotal = reader["price_total"].ToString();
-                string customerEmail = reader["email"].ToString();
-                string customerPhoneNumber = reader["phonenumber"].ToString();
-                string model = reader["model"].ToString();
-                string thumbnail = reader["thumbnail"].ToString();
+                string? timeOrder = reader["time_order"].ToString();
+                string? expriedCar = reader["expried_car"].ToString();
+                string? priceTotal = reader["price_total"].ToString();
+                string? customerEmail = reader["email"].ToString();
+                string? customerPhoneNumber = reader["phonenumber"].ToString();
+                string? model = reader["model"].ToString();
+                string? thumbnail = reader["thumbnail"].ToString();
 
                 rentedBikes.Add(new RentedBikeDTO(id, timeOrder, expriedCar, priceTotal, customerEmail, customerPhoneNumber, model, thumbnail));
             }
