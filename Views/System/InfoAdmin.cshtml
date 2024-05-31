@@ -1,3 +1,45 @@
-<div class="">
+@{
+
+    var email = ViewBag.Email as string;
+    var password = ViewBag.Password as string;
+}
+
+<div class="main-info">
+    <h4>
+        Thông Tin Admin
+    </h4>
+
+    <form asp-action="HandleChangeInfoAdmin" method="post" asp-controller="System">
+        <div class="form-content">
+            <div class="form-input">
+                <label for="">Email</label><br />
+                <input type="email" class="input-email" name="email">
+            </div>
+
+            <div class="form-input">
+                <label for="">Password</label><br />
+                <input type="text" class="input-password" name="password">
+            </div>
+        </div>
+
+        <div class="form-button">
+            <button>Update</button>
+        </div>
+    </form>
 
 </div>
+
+<script>
+
+    let dataUser = JSON.parse(window.localStorage.getItem("dataUser"));
+
+    if (dataUser && Array.isArray(dataUser)) {
+        const inputEmail = document.querySelector(".input-email");
+        const inputPassword = document.querySelector(".input-password");
+        console(inputEmail);
+
+        inputEmail.value = dataUser[0];
+        inputPassword.value = dataUser[1];
+    }
+
+</script>
