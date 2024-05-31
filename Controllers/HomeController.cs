@@ -58,7 +58,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        List<ALlcodeDTO> data = new List<ALlcodeDTO>();
+        List<AllCodeDTO> data = new List<AllCodeDTO>();
 
         if (this.connection != null)
         {
@@ -74,7 +74,8 @@ public class HomeController : Controller
                 string? contentDetail = reader["content_detail"].ToString();
                 string? code = reader["code"].ToString();
 
-                ALlcodeDTO Allcode = new ALlcodeDTO(id, type, contentTitle, contentDetail, code);
+
+                AllCodeDTO Allcode = new AllCodeDTO(id, type, contentTitle, contentDetail, code);
                 data.Add(Allcode);
             }
             this.connection.Close();
