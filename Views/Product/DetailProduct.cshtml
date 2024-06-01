@@ -4,88 +4,34 @@
     ViewData["Description"] = "MOTOGO là dịch vụ cho thuê xe máy tự lái chuyên nghiệp tại Việt Nam, cho phép người thuê có thể nhận xe tại một điểm và trả xe tại một điểm khác trên cùng một hệ thống.";
 
     var product = ViewBag.Product as ProductDTO;
+    var location = ViewBag.location as AllCodeDTO;
+        
 }
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>@ViewData["Title"]</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #ddd;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-            color: #333;
-        }
-        .product-image {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .product-image img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            padding: 10px;
-            background-color: #f4f4f4;
-        }
-        .product-details {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .product-details p {
-            flex: 1 1 45%;
-            margin: 10px 0;
-            font-size: 1em;
-            color: #555;
-        }
-        .product-details p span {
-            font-weight: bold;
-            color: #333;
-        }
-        .content-html {
-            margin: 20px 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Thông Tin Chi Tiết Xe @nameProduct</h1>
+            <h2>Thông Tin Chi Tiết Xe @nameProduct</h2>
         </div>
-        <div class="product-image">
-            <img src="/assets/imgs/@product?.thumbnail" alt="@nameProduct" />
-        </div>
-        <div class="product-details">
-            <p><span>Model:</span> @product?.model</p>
-            <p><span>Brand:</span> @product?.brand</p>
-            <p><span>Required Age:</span> @product?.required_age</p>
-            <p><span>Count Rented:</span> @product?.count_rented</p>
-            <p><span>Count Remaining:</span> @product?.count_remaining</p>
-            <p><span>Location ID:</span> @product?.location_id</p>
-            <p><span>Percent New:</span> @product?.precent_new</p>
-            <p><span>Price:</span> @product?.price</p>
-            <p><span>Location:</span> @product?.location</p>
+        <div class="inf-product">
+            <div class="product-image">
+                <img src="/assets/imgs/@product?.thumbnail" alt="@nameProduct" />
+            </div>
+            <div class="product-details">
+                <p><span>Têb xe:</span> @product?.model</p>
+                <p><span>Hãng xe:</span> @product?.brand</p>
+                <p><span>Độ tuổi yêu cầu:</span> @product?.required_age Tuổi</p>
+                <p><span>Số lượng đã thuê:</span> @product?.count_rented Xe</p>
+                <p><span>Số xe còn lại:</span> @product?.count_remaining Xe</p>
+                <p><span>Độ mới :</span> @product?.precent_new%</p>
+                <p><span>Giá thuê:</span> @product?.price đ</p>
+                <p><span>Địa điểm:</span> @location?.content_title</p>
+            </div>
         </div>
         <div class="content-html">
             @Html.Raw(product?.content_HTML)
