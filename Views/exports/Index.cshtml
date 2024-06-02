@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Report.mrt - Viewer</title>
+<script type="text/javascript" src="scripts/stimulsoft.reports.engine.js"></script>
+<script type="text/javascript" src="scripts/stimulsoft.reports.export.js"></script>
+<script type="text/javascript" src="scripts/stimulsoft.viewer.js"></script>
+
+<script type="text/javascript">
+    function Start() {
+        var report = Stimulsoft.Report.StiReport.createNewReport();
+        report.loadFile("reports/Report.mrt");
+
+        var options = new Stimulsoft.Viewer.StiViewerOptions();
+        var viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
+        viewer.report = report;
+        viewer.renderHtml("viewerContent");
+    }
+</script>
+<div onload="Start()">
+    <div id="viewerContent"></div>
+</div>
