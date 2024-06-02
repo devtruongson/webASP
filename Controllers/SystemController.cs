@@ -205,52 +205,9 @@ public class SystemController : Controller
     }
 
 
-    [HttpPost]
-
-    public IActionResult HandleChangeInfoAdmin(string email, string password)
-    {
-
-        if (this.connection != null)
-        {
-            this.connection.Open();
-            string query = "UPDATE Admin SET password = '" + password + "' WHERE email = '" + email + "'";
-            SqlCommand command = new SqlCommand(query, this.connection);
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
-            {
-                return RedirectToAction("Dashboard", "System", new { isChanged = false });
-            }
-        }
-
-        // return View("~/Views/System/Dashboard.cshtml");
-        return RedirectToAction("Dashboard", "System", new { isChanged = true, password = password });
-    }
 
 
-    [HttpPost]
 
-    public IActionResult HandleUpdatePrice(string price, string model)
-    {
 
-        if (this.connection != null)
-        {
-            this.connection.Open();
-
-            string query = "UPDATE Products SET price = " + Double.Parse(price) + " WHERE model = '" + model + "'";
-            SqlCommand command = new SqlCommand(query, this.connection);
-            SqlDataReader reader = command.ExecuteReader();
-            if (reader.Read())
-            {
-                Console.WriteLine("read");
-                return RedirectToAction("Dashboard", "System", new { changePrice = "false" });
-            }
-        }
-
-        // return View("~/Views/System/Dashboard.cshtml");
-        // return RedirectToAction("Dashboard", "System", new { isChanged = true });
-        ViewBag.ChangePrice = "true";
-        return RedirectToAction("Dashboard", "System", new { changePrice = "true" });
-
-    }
 
 }

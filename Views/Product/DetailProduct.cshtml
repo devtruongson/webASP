@@ -1,15 +1,41 @@
 @{
     string nameProduct = ViewBag.productName as string;
-    ViewData["Title"] = "Thông Tin Chi Tiết Xe - "  + nameProduct;
+    ViewData["Title"] = "Thông Tin Chi Tiết Xe - " + nameProduct;
     ViewData["Description"] = "MOTOGO là dịch vụ cho thuê xe máy tự lái chuyên nghiệp tại Việt Nam, cho phép người thuê có thể nhận xe tại một điểm và trả xe tại một điểm khác trên cùng một hệ thống.";
 
     var product = ViewBag.Product as ProductDTO;
+    var location = ViewBag.location as AllCodeDTO;
+        
 }
 
-<div>
-    <h1>Thông Tin Chi Tiết Xe @nameProduct</h1>
-    <img src="/assets/imgs/@product?.thumbnail" />
-    <div>
-        @* @product?.content_HTML *@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Thông Tin Chi Tiết Xe @nameProduct</h2>
+        </div>
+        <div class="inf-product">
+            <div class="product-image">
+                <img src="/assets/imgs/@product?.thumbnail" alt="@nameProduct" />
+            </div>
+            <div class="product-details">
+                <p><span>Têb xe:</span> @product?.model</p>
+                <p><span>Hãng xe:</span> @product?.brand</p>
+                <p><span>Độ tuổi yêu cầu:</span> @product?.required_age Tuổi</p>
+                <p><span>Số lượng đã thuê:</span> @product?.count_rented Xe</p>
+                <p><span>Số xe còn lại:</span> @product?.count_remaining Xe</p>
+                <p><span>Độ mới :</span> @product?.precent_new%</p>
+                <p><span>Giá thuê:</span> @product?.price đ</p>
+                <p><span>Địa điểm:</span> @location?.content_title</p>
+            </div>
+        </div>
+        <div class="content-html">
+            @Html.Raw(product?.content_HTML)
+        </div>
     </div>
-</div>
+</body>
+</html>
