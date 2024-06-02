@@ -1,15 +1,9 @@
-@{
-
-    var email = ViewBag.Email as string;
-    var password = ViewBag.Password as string;
-}
-
 <div class="main-info">
     <h4>
         Thông Tin Admin
     </h4>
 
-    <form asp-action="HandleChangeInfoAdmin" method="post" asp-controller="System">
+    <form asp-action="HandleChangeInfoAdmin" method="post" asp-controller="InfoAdmin">
         <div class="form-content">
             <div class="form-input">
                 <label for="">Email</label><br />
@@ -32,14 +26,27 @@
 <script>
 
     let dataUser = JSON.parse(window.localStorage.getItem("dataUser"));
-
     if (dataUser && Array.isArray(dataUser)) {
         const inputEmail = document.querySelector(".input-email");
         const inputPassword = document.querySelector(".input-password");
-        console(inputEmail);
-
         inputEmail.value = dataUser[0];
         inputPassword.value = dataUser[1];
+    }
+
+
+    if (window.location.search.includes("isChanged")) {
+        if (window.location.search.split("isChanged=")[1]?.split("&password=")[0] === "True") {
+            let data = JSON.parse(localStorage.getItem("dataUser"));
+            data.pop();
+            const passwordNew = window.location.search.split("&password=")[1];
+            data.push(passwordNew);
+            localStorage.setItem("dataUser", JSON.stringify(data));
+            window.location.href = "http://localhost:8080/infoadmin";
+            alert("Bạn đã thay đổi mạt khẩu thành công");
+        }
+        else {
+            alert("Đổi mật khẩu thất bại bạn vui lòng thử lại sau !");
+        }
     }
 
 </script>

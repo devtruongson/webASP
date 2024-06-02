@@ -1,27 +1,16 @@
-@{
-    var test = ViewBag.test as string;
-    var data = ViewBag.Data as List<ProductDTO>;
-
-    double handlePrice(string price, double percent)
-    {
-        double newPrice = Convert.ToDouble(price);
-
-        return newPrice * percent;
-    }
-}
-
-
 <div class="main">
     <div class="container">
         <div class="row">
             <div class="col-2">
                 <div class="sibar">
                     <div class="sibar-control">
-                        <button id="btn-info-admin" data-render="manage-admin" class="active">Quản Lí Thông tin</button>
+                        <button id="btn-info" data-render="manage-admin">Quản Lí Thông tin Admin</button>
+                    </div>
+                    <div class="sibar-control">
                         <button id="btn-price" data-render="manage-price">Quản Lí Price</button>
                     </div>
                     <div class="sibar-control">
-                        <button id="btn-price" data-render="manage-blogs">Quản Lí Bài Viết</button>
+                        <button id="btn-blog" data-render="manage-blogs">Quản Lí Bài Viết</button>
                     </div>
                     <div class="sibar-control">
                         <button id="btn-rented-bike" data-render="rented-bike">Xem xe đã thuê</button>
@@ -32,125 +21,13 @@
                 </div>
             </div>
             <div class="col-10 min-vh-100" id="">
-                <div class="form-info-admin form-content">
-                </div>
-
-
-
-                <div class="form-table-price display-none">
-                    <div class="modal-update display-none shadow">
-                        <div class="d-flex justify-content-end">
-                            <i class="bi bi-x-circle text-danger icon-close-modal"></i>
-                        </div>
-                        <p>Cập nhật giá xe</p>
-                        <form asp-action="HandleUpdatePrice" method="post" asp-controller="System">
-                            <input type="text" class="input-model-update" name="model" hidden>
-                            <p class="text-model"></p>
-                            <input type="text" class="shadow input-update" name="price"><br />
-                            <button>Cập Nhật</button>
-                        </form>
-                    </div>
-
-
-                    @if (data != null)
-                    {
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Model</th>
-                                            <th>brand</th>
-                                            <th>1-5 ngày</th>
-                                            <th>6-10 ngày</th>
-                                            <th>11-15 ngày</th>
-                                            <th>16-20 ngày</th>
-                                            <th>+20 ngày</th>
-                                            <th>Hành động</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                @foreach (var item in data)
-                                {
-                                                    <tr>
-                                                        <td>@item.model</td>
-                                                        <td>@item.brand</td>
-                                                        <td>@handlePrice(item.price, 1) VNĐ</td>
-                                                        <td>@handlePrice(item.price, 0.9) VNĐ</td>
-                                                        <td>@handlePrice(item.price, 0.8) VNĐ</td>
-                                                        <td>@handlePrice(item.price, 0.7) VNĐ</td>
-                                                        <td>@handlePrice(item.price, 0.65) VNĐ</td>
-                                                        <td>
-                                                            <input type="text" value="@item.model" hidden class="input-model">
-                                                            <input type="text" value="@item.price" class="input-price" hidden>
-                                                            <button class="button-update">Sửa</button>
-                                                        </td>
-                                                    </tr>
-                                }
-
-                                    </tbody>
-                                </table>
-                    }
-                    else
-                    {
-                                <p>No data available</p>
-                    }
-                </div>
+                <div class="form-info-admin form-content"></div>
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
-    const formInfo = document.querySelector(".form-info-admin");
-    const formPrice = document.querySelector(".form-table-price");
-    const iconClose = document.querySelector(".icon-close-modal");
-    const modalsUpdate = document.querySelector(".modal-update")
-    const btnUpdate = document.querySelectorAll(".button-update");
-    const inputUpdate = document.querySelector(".input-update");
-    const inputModel = document.querySelector(".input-model");
-
-   
-
-    const url = new URL(window.location.href);
-
-    const params = new URLSearchParams(url.search);
-
-    if (params.has('changePrice')) {
-        if (params.get('changePrice') === "true") {
-            window.location.href = "/System/Dashboard"
-        }
-    }
-
-
-
-
-    btnUpdate.forEach((button, index) => {
-        button.addEventListener("click", (event) => {
-
-            const row = event.target.closest("tr");
-            const inputModel = row.querySelector(".input-model");
-            const inputPrice = row.querySelector(".input-price");
-
-            const modelValue = inputModel.value;
-            const priceValue = inputPrice.value;
-
-            const inputModelUpdate = document.querySelector(".input-model-update");
-            const inputUpdate = document.querySelector(".input-update");
-            const textModel = document.querySelector(".text-model")
-
-            textModel.innerHTML = modelValue;
-            inputModelUpdate.value = modelValue;
-            inputUpdate.value = priceValue;
-        });
-    });
-
-
-
-    iconClose.addEventListener("click", () => {
-        modalsUpdate.classList.add("display-none")
-    })
-
-
     if (!JSON.parse(localStorage.getItem("isLoginIn"))) {
         alert("Bạn không có quyền!");
         window.location.href = "http://localhost:8080/System";
@@ -158,17 +35,19 @@
 
     const arrRender = [{
         renderKey: "manage-admin",
-        elementRender: `~/Views/System/InfoAdmin.cshtml`
+        elementRender: `/InfoAdmin`,
+        urlScript: "/assets/js/infoAdmin.js",
+        class: "script-info",
+
     }, {
         renderKey: "manage-price",
-        elementRender: "~/Views/System/PriceCars.cshtml"
+        elementRender: "/PriceCars",
+        urlScript: "/assets/js/price.js",
+        class: "script-price",
     }, {
         renderKey: "rented-bike",
         elementRender: `/RentedBike`
-
-    @* function loadPartial(query, callback) {
-
-    }, *@
+    },
     {
         renderKey: "manage-blogs",
         elementRender: "~/Views/System/blog.cshtml",
@@ -254,17 +133,7 @@
         fetch(`/System/InfoAdmin?query=${query}`)
             .then(async (res) => await res.text())
             .then(res => {
-                callback(res);
-                if (query === arrRender[0].elementRender) {
-                    getInfo();
-                    formInfo.classList.remove('display-none')
-                    formPrice.classList.add('display-none')
-                    modalsUpdate.classList.add('display-none')
-                }
-                if (query === arrRender[1].elementRender) {
-                    formInfo.classList.add('display-none')
-                    formPrice.classList.remove('display-none')
-                }
+                callback(res)
             })
     }
 
@@ -273,8 +142,6 @@
     }
 
     loadPartial("~/Views/System/InfoAdmin.cshtml", renderPartial)
-    @* loadPartial("~/Views/System/PriceCars.cshtml", renderPartial) *@
-
     const btnElements = document.querySelectorAll("button[data-render]");
     const renderContent = document.querySelector(".form-content");
 
@@ -302,26 +169,68 @@
             }
 
         })
-    }) 
+    }) *@
 
 
-    //info
 
 
-    function getInfo() {
-        let dataUser = JSON.parse(window.localStorage.getItem("dataUser"));
+    @* const sibInfoAdmin = document.querySelector("#btn-info-admin");
+        const sibPrice = document.querySelector("#btn-price");
 
-        if (dataUser && Array.isArray(dataUser)) {
-            const inputEmail = document.querySelector(".input-email");
-            const inputPassword = document.querySelector(".input-password");
+        const handleRemoveActive = () => {
 
-            inputEmail.value = dataUser[0];
-            inputPassword.value = dataUser[1];
+        const listButton = document.querySelectorAll(".sibar button");
+
+        listButton.forEach(button => {
+        button.classList.remove("active");
+        });
         }
-    }
 
+        const handleAddDisplayNone = () => {
+        const listContents = document.querySelectorAll(".form-content");
+        listContents.forEach(div => {
+        div.classList.add("display-none")
+        })
 
-    //change password
+        } *@
+
+    @* info admin *@
+    @*
+        sibInfoAdmin.addEventListener("click", function () {
+
+        const content = document.querySelector(".form-info-admin")
+
+        handleRemoveActive();
+        handleAddDisplayNone();
+
+        content.classList.remove("display-none")
+        sibInfoAdmin.classList.add("active");
+        }); *@
+
+    @* price *@
+
+    @* sibPrice.addEventListener("click", function () {
+
+        const content = document.querySelector(".form-price ")
+
+        handleRemoveActive();
+        handleAddDisplayNone();
+
+        content.classList.remove("display-none")
+        sibPrice.classList.add("active");
+        }); *@
+
+        function handleRenderAfterChange(index){
+            console.log('a');
+           loadPartial(arrRender[index].elementRender,renderPartial);
+           const scriptElement = document.createElement("script");
+            scriptElement.classList.add(arrRender[index].class);
+            scriptElement.src = arrRender[index].urlScript;
+            scriptElement.setAttribute("defer", "");
+            scriptElement.setAttribute("type", "text/javascript");
+            document.body.appendChild(scriptElement);
+        }
+
 
     if (window.location.search.includes("isChanged")) {
         if (window.location.search.split("isChanged=")[1]?.split("&password=")[0] === "True") {
@@ -330,21 +239,31 @@
             const passwordNew = window.location.search.split("&password=")[1];
             data.push(passwordNew);
             localStorage.setItem("dataUser", JSON.stringify(data));
-            window.location.href = "http://localhost:8080/System/Dashboard";
             alert("Bạn đã thay đổi mạt khẩu thành công");
         }
         else {
             alert("Đổi mật khẩu thất bại bạn vui lòng thử lại sau !");
         }
+        handleRenderAfterChange(0);
+        const btnInfo = document.querySelector("#btn-info");
+        btnInfo.classList.add("active")
     }
 
+    const url = new URL(window.location.href);
 
-    //change price
-    btnUpdate.forEach(button => {
-        button.addEventListener("click", () => {
-            modalsUpdate.classList.remove("display-none");
-        });
-    });
+    const params = new URLSearchParams(url.search);
+
+    if (params.has("changePrice")) {
+        if (params.get("changePrice") === "true") {
+            alert("Cập nhật giá xe thành công");
+        }
+        else {
+            alert("Đã xảy ra lỗi vui lòng thử lại sau !");
+        }
+        handleRenderAfterChange(1);
+        const btnInfo = document.querySelector("#btn-price");
+        btnInfo.classList.add("active")
+    }
 
 
 </script>

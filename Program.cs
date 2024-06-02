@@ -57,4 +57,17 @@ app.MapControllerRoute(
     pattern: "rentedbike/*",
     defaults: new { controller = "RentedBike", action = "Index" }
 );
+
+app.MapControllerRoute(
+    name: "pricecars",
+    pattern: "pricecars/*",
+    defaults: new { controller = "PriceCars", action = "Index" }
+);
+
+app.MapControllerRoute(
+    name: "infoadmin",
+    pattern: "infoadmin/*",
+    defaults: new { controller = "InfoAdmin", action = "Index" }
+);
+
 app.Run();
