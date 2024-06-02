@@ -19,13 +19,11 @@ public class HomeController : Controller
         {
             this.connection.Open();
             string queryCheckUser = "SELECT * FROM Customers WHERE id = @CustomerId";
-            bool isValid = true;
             SqlCommand commandCheck = new SqlCommand(queryCheckUser, this.connection);
             commandCheck.Parameters.AddWithValue("@CustomerId", CustomerId);
             SqlDataReader readerCheck = commandCheck.ExecuteReader();
             if (!readerCheck.Read())
             {
-                isValid = false;
                 readerCheck.Close();
                 string queryAddUser = "INSERT INTO Customers (id, phonenumber) VALUES (@id, @phonenumber)";
                 SqlCommand commandInsert = new SqlCommand(queryAddUser, this.connection);

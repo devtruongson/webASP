@@ -53,7 +53,7 @@ public class ManagerBikeController : Controller
             FROM Orders o
             JOIN Customers c ON o.customer_id = c.id
             JOIN Products p ON o.product_id = p.id
-            WHERE customer_id=" + idCustomer; // Giả sử chỉ hiển thị các đơn hàng đã nhận
+            WHERE customer_id=" + idCustomer;
             SqlCommand command = new SqlCommand(query, this.connection);
             SqlDataReader reader = command.ExecuteReader();
 
