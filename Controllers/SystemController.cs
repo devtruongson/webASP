@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
+using webASP.Models;
+using System.Diagnostics;
+
 using webASP.dto;
 
 
@@ -128,13 +132,82 @@ public class SystemController : Controller
 
     public IActionResult Dashboard()
     {
+        List<ProductDTO> data = new List<ProductDTO>();
+
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "select * from Products left join [All-code] on [All-code].id = Products.location_id";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["Id"]);
+                string? model = reader["model"].ToString();
+                string? brand = reader["brand"].ToString();
+                string? capacity = reader["capacity"].ToString();
+                string? thumbnail = reader["thumbnail"].ToString();
+                string? price = reader["price"].ToString();
+                string? location = reader["content_title"].ToString();
+                string? percentNew = reader["precent_new"].ToString();
+
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, location, percentNew);
+                data.Add(product);
+            }
+            ViewBag.Data = data;
+        }
         return View("~/Views/System/Dashboard.cshtml");
     }
 
     [HttpGet]
     public IActionResult InfoAdmin()
     {
+
         string queryString = Request.Query["query"].ToString();
         return PartialView(queryString);
     }
+
+    [HttpGet]
+    public IActionResult GetDataPrice()
+    {
+        List<ProductDTO> data = new List<ProductDTO>();
+
+        if (this.connection != null)
+        {
+            this.connection.Open();
+            string query = "select * from Products left join [All-code] on [All-code].id = Products.location_id";
+            SqlCommand command = new SqlCommand(query, this.connection);
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(reader["Id"]);
+                string? model = reader["model"].ToString();
+                string? brand = reader["brand"].ToString();
+                string? capacity = reader["capacity"].ToString();
+                string? thumbnail = reader["thumbnail"].ToString();
+                string? price = reader["price"].ToString();
+                string? location = reader["content_title"].ToString();
+                string? percentNew = reader["precent_new"].ToString();
+
+                ProductDTO product = new ProductDTO(id, model, brand, capacity, thumbnail, price, location, percentNew);
+                data.Add(product);
+            }
+            ViewBag.Data = data;
+        }
+        return View("~/Views/System/PriceCars.cshtml");
+
+    }
+
+    public IActionResult PriceCars()
+    {
+
+        return View("~/Views/System/PriceCars.cshtml");
+    }
+
+
+
+
+
+
+
 }

@@ -1,1 +1,123 @@
-<div class="">Price</div>
+@{
+    var data = ViewBag.Data as List<ProductDTO>;
+    var text = ViewBag.Text as string;
+    @* Console.WriteLine(text); *@
+
+    double handlePrice(string price, double percent)
+    {
+        double newPrice = Convert.ToDouble(price);
+
+        return newPrice * percent;
+    }
+}
+
+
+<div class=" main">
+    <h4 class="">Cập nhật giá thuê xe</h4>
+    <div class="modal-update display-none  shadow">
+        <div class="d-flex justify-content-end">
+            <i class="bi bi-x-circle text-danger icon-close-modal"></i>
+        </div>
+        <p>Cập nhật giá xe</p>
+        <form asp-action="HandleUpdatePrice" method="post" asp-controller="PriceCars">
+            <input type="text" class="input-model-update" name="model" hidden>
+            <p class="text-model"></p>
+            <input type="text" class="shadow input-update" name="price"><br />
+            <button>Cập Nhật</button>
+        </form>
+    </div>
+
+    @if (data != null)
+    {
+        <table>
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>brand</th>
+                    <th>1-5 ngày</th>
+                    <th>6-10 ngày</th>
+                    <th>11-15 ngày</th>
+                    <th>16-20 ngày</th>
+                    <th>+20 ngày</th>
+                    <th>Cập Nhật</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in data)
+                {
+                    <tr>
+                        <td>@item.model</td>
+                        <td>@item.brand</td>
+                        <td>@handlePrice(item.price, 1) VNĐ</td>
+                        <td>@handlePrice(item.price, 0.9) VNĐ</td>
+                        <td>@handlePrice(item.price, 0.8) VNĐ</td>
+                        <td>@handlePrice(item.price, 0.7) VNĐ</td>
+                        <td>@handlePrice(item.price, 0.65) VNĐ</td>
+                        <td>
+                            <input type="text" value="@item.model" hidden class="input-model">
+                            <input type="text" value="@item.price" class="input-price" hidden>
+                            <button class="button-update">Sửa</button>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No data available</p>
+    }
+</div>
+
+<script>
+    const iconClose = document.querySelector(".icon-close-modal");
+    const modalsUpdate = document.querySelector(".modal-update")
+    const btnUpdate = document.querySelectorAll(".button-update");
+    const inputUpdate = document.querySelector(".input-update");
+    const inputModel = document.querySelector(".input-model");
+
+
+    btnUpdate.forEach((button, index) => {
+        button.addEventListener("click", (event) => {
+            modalsUpdate.classList.remove("display-none");
+            const row = event.target.closest("tr");
+            const inputModel = row.querySelector(".input-model");
+            const inputPrice = row.querySelector(".input-price");
+
+            const modelValue = inputModel.value;
+            const priceValue = inputPrice.value;
+
+            const inputModelUpdate = document.querySelector(".input-model-update");
+            const inputUpdate = document.querySelector(".input-update");
+            const textModel = document.querySelector(".text-model")
+
+            textModel.innerHTML = modelValue;
+            inputModelUpdate.value = modelValue;
+            inputUpdate.value = priceValue;
+        });
+    });
+
+
+    //check trạng thái 
+    const url = new URL(window.location.href);
+
+    const params = new URLSearchParams(url.search);
+
+    if (params.has('changePrice')) {
+        if (params.get('changePrice') === "true") {
+            alert("Cập nhật giá xe thành công");
+            window.location.href = "/price"
+        }
+        if (params.get('changePrice') === "false") {
+            alert("Đã xảy ra lỗi vui lòng thử lại sau !");
+            window.location.href = "/price";
+        }
+    }
+
+    // Đóng form update giá 
+    iconClose.addEventListener("click", () => {
+        modalsUpdate.classList.add("display-none")
+    })
+
+</script>

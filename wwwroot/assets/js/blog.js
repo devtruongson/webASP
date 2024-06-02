@@ -1,57 +1,57 @@
 setTimeout(() => {
-  handleBlog();
+    handleBlog();
 }, 100);
 
 function handleBlog() {
-  const form = document.querySelector("#form_blog");
-  const tableRender = document.querySelector(".tableRender-crud-blog");
+    const form = document.querySelector("#form_blog");
+    const tableRender = document.querySelector(".tableRender-crud-blog");
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
 
-      const elements = form.querySelectorAll("[name]");
-      const dataBuilder = {};
-      elements.forEach((ele) => {
-        dataBuilder[ele.name] = ele.value;
-      });
+            const elements = form.querySelectorAll("[name]");
+            const dataBuilder = {};
+            elements.forEach((ele) => {
+                dataBuilder[ele.name] = ele.value;
+            });
 
-      let isValid = true;
-      for (const i in dataBuilder) {
-        if (!dataBuilder[i]) {
-          alert("Hay nhap day du cac truong!");
-          isValid = false;
-          break;
-        }
-      }
+            let isValid = true;
+            for (const i in dataBuilder) {
+                if (!dataBuilder[i]) {
+                    alert("Hay nhap day du cac truong!");
+                    isValid = false;
+                    break;
+                }
+            }
 
-      if (!isValid) return;
+            if (!isValid) return;
 
-      const dataBuilderFormData = new FormData();
-      for (const i in dataBuilder) {
-        dataBuilderFormData.append(i, dataBuilder[i]);
-      }
-      fetch("/System/HandleCreateBlog", {
-        method: "POST",
-        body: dataBuilderFormData,
-      }).then(function (res) {
-        const check = confirm("Ban da tao thanh cong!");
-        if (check) {
-          window.location.reload();
-        } else {
-          window.location.reload();
-        }
-      });
-    });
-  }
+            const dataBuilderFormData = new FormData();
+            for (const i in dataBuilder) {
+                dataBuilderFormData.append(i, dataBuilder[i]);
+            }
+            fetch("/System/HandleCreateBlog", {
+                method: "POST",
+                body: dataBuilderFormData,
+            }).then(function (res) {
+                const check = confirm("Ban da tao thanh cong!");
+                if (check) {
+                    window.location.reload();
+                } else {
+                    window.location.reload();
+                }
+            });
+        });
+    }
 
-  if (tableRender) {
-    fetch("/System/GetAllBlog")
-      .then((res) => res.json())
-      .then((res) => {
-        const data = res
-          .map(
-            (item, index) => `  
+    if (tableRender) {
+        fetch("/System/GetAllBlog")
+            .then((res) => res.json())
+            .then((res) => {
+                const data = res
+                    .map(
+                        (item, index) => `  
             <tr>
                 <th scope="row">${index + 1}</th>
                 <td>${item.title}</td>
@@ -63,9 +63,9 @@ function handleBlog() {
                     </form>
                 </td>
             </tr>`
-          )
-          .join("");
-        tableRender.innerHTML = data;
-      });
-  }
+                    )
+                    .join("");
+                tableRender.innerHTML = data;
+            });
+    }
 }
